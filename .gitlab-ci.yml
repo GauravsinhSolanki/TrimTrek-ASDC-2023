@@ -21,17 +21,25 @@ stages:          # List of stages for jobs, and their order of execution
   - test
 
 
-build-job:       # This job runs in the build stage, which runs first.
+backend-build-job:       # This job runs in the build stage, which runs first.
   image: maven:3.8.1-openjdk-11
   stage: build
+  tags:
+    - group07_dal_runner
   script:
-    - mvn compile
+    - echo "Backend build start"
+    - cd backend
+    - mvn clean package
     - echo "Compile complete."
 
-test-job:   # This job runs in the test stage.
+backend-test-job:   # This job runs in the test stage.
   image: maven:3.8.1-openjdk-11
   stage: test    # It only starts when the job in the build stage completes successfully.
+  tags:
+    - group07_dal_runner
   script:
+    - echo "Backend test start"
+    - cd backend
     - mvn test
     - echo "test complete."
 
