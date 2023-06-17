@@ -28,7 +28,7 @@ backend-build-job:       # This job runs in the build stage, which runs first.
     - group07_dal_runner
   script:
     - echo "Backend build start"
-    - mvn clean package
+    - mvn complie
     - echo "Compile complete."
 
 backend-test-job:   # This job runs in the test stage.
