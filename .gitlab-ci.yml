@@ -46,7 +46,7 @@ frontend-build-job:       # This job runs in the build stage, which runs first.
     - echo "Frontend build start"
     - cd frontend
     - npm install
-    - npm run build
+    - npm run build --if-present
     - echo "Compile complete."
 
 
