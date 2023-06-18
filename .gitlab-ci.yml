@@ -23,6 +23,8 @@ stages:          # List of stages for jobs, and their order of execution
 
 backend-build-job:       # This job runs in the build stage, which runs first.
   image: maven:3.8.1-openjdk-11
+  tags:
+    - group07_dal_runner
   stage: build
   script:
     - echo "Backend build start"
