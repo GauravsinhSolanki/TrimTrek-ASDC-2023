@@ -53,12 +53,13 @@ const Login = () => {
           />
           <button type="submit">Login</button>
           <div className="form-links">
-            <a href="#" onClick={handleForgotPassword}>
+            <button onClick={handleForgotPassword} className="link-button">
               Forgot Password
-            </a>
-            <a href="#" onClick={handleSignup}>
+            </button>
+
+            <button onClick={handleSignup} className="link-button">
               Signup
-            </a>
+            </button>
           </div>
         </form>
       </div>
