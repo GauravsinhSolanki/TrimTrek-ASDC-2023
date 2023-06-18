@@ -28,7 +28,7 @@ const Login = () => {
       <div className="image-container">
         <img
           src="https://images.unsplash.com/photo-1598524374912-6b0b0bab43dd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80"
-          alt="Login Image"
+          alt="Barber Login Page"
         />
       </div>
       <div className="form-container">
