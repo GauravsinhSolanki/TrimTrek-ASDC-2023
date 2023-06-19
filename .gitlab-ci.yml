@@ -19,7 +19,7 @@
 stages:          # List of stages for jobs, and their order of execution
   - build
   - test
-  - deploy
+
 
 backend-build-job:       # This job runs in the build stage, which runs first.
   image: maven:3.8.1-openjdk-16
@@ -48,29 +48,4 @@ frontend-build-job:       # This job runs in the build stage, which runs first.
     - npm install
     - npm run build --if-present
     - echo "Compile complete."
-
-
-deploy-job:
-  image: python:latest
-  stage: deploy
-  script:
-    - echo "Deploy start"
-    - apt-get update -y
-    - apt-get install -y unzip
-    - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-    - unzip awscliv2.zip
-    - ./aws/install
-    - aws --version
-    - echo "AWS CLI Installed"
-    - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
-    - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
-    - aws configure set region $AWS_REGION
-    - echo "AWS CLI Configured"
-    - aws s3 sync frontend/build/ s3://$AWS_BUCKET_NAME/ --delete
-    - aws s3 cp backend/target/my-application.jar s3://$AWS_BUCKET_NAME/TrimTrek.jar
-    - aws elasticbeanstalk create-application-version --application-name TrimTrek --version-label 1.0 --source-bundle S3Bucket=$AWS_BUCKET_NAME,S3Key=TrimTrek.jar
-    - aws elasticbeanstalk update-environment --application-name TrimTrek --environment-name $EB_ENVIRONMENT_NAME --version-label 1.0
-    - echo "Deploy complete."
-  only:
-    - master  # only trigger this job for the master branch
 
