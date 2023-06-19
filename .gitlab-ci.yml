@@ -57,7 +57,7 @@ code-quality-job:
     - cd backend
     - mvn clean compile   # Compiles the code
     - mvn test            # Runs unit tests
-    - mvn spring-javaformat:apply  # Applies code formatting
+    - mvn com.coveo:fmt-maven-plugin:format@format-code  # Applies code formatting
     - mvn spring-boot:build-info  # Generates build information
     - echo "Code quality checks complete"
 
