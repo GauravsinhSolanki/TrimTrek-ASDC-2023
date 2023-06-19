@@ -59,7 +59,7 @@ deploy-job:
     - apt-get install -y unzip
     - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
     - unzip awscliv2.zip
-    - sudo ./aws/install
+    - ./aws/install
     - aws --version
     - echo "AWS CLI Installed"
     - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
