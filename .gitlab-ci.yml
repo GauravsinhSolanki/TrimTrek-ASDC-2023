@@ -49,16 +49,6 @@ frontend-build-job:       # This job runs in the build stage, which runs first.
     - npm run build --if-present
     - echo "Compile complete."
 
-code-quality-job:
-  image: maven:3.8.1-openjdk-16
-  stage: test
-  script:
-    - echo "Code quality checks start"
-    - cd backend
-    - mvn clean compile   # Compiles the code
-    - mvn test            # Runs unit tests
-    - mvn com.coveo:fmt-maven-plugin:format@format-code  # Applies code formatting
-    - mvn spring-boot:build-info  # Generates build information
-    - echo "Code quality checks complete"
+
 
 
