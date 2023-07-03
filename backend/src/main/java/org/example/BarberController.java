@@ -11,21 +11,21 @@ import java.util.Optional;
 @RequestMapping("/barbers")
 public class BarberController {
 
-    private final BarberRepository barberRepository;
+    private final BarberService barberService;
 
     @Autowired
-    public BarberController(BarberRepository barberRepository) {
-        this.barberRepository = barberRepository;
+    public BarberController(BarberService barberService) {
+        this.barberService = barberService;
     }
 
     @GetMapping
     public List<Barber> getAllBarbers() {
-        return barberRepository.findAll();
+        return barberService.getAllBarbers();
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Barber> getBarberById(@PathVariable(value = "id") Long barberId) {
-        Optional<Barber> barber = barberRepository.findById(barberId);
+        Optional<Barber> barber = barberService.getBarberById(barberId);
         if(barber.isPresent()){
             return ResponseEntity.ok().body(barber.get());
         }else{
@@ -35,39 +35,28 @@ public class BarberController {
 
     @PostMapping
     public Barber createBarber(@RequestBody Barber barber) {
-        return barberRepository.save(barber);
+        return barberService.createBarber(barber);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Barber> updateBarber(@PathVariable(value = "id") Long barberId, @RequestBody Barber barberDetails) {
-        Optional<Barber> barberOptional = barberRepository.findById(barberId);
+        Optional<Barber> barberOptional = barberService.getBarberById(barberId);
         if(!barberOptional.isPresent()){
             return ResponseEntity.notFound().build();
         }
 
-        Barber barber = barberOptional.get();
-        barber.setFirstName(barberDetails.getFirstName());
-        barber.setLastName(barberDetails.getLastName());
-        barber.setAddress(barberDetails.getAddress());
-        barber.setPhone(barberDetails.getPhone());
-        barber.setEmail(barberDetails.getEmail());
-        barber.setPassword(barberDetails.getPassword());
-        barber.setSpecialtyHaircuts(barberDetails.getSpecialtyHaircuts());
-        barber.setSpecialtyServices(barberDetails.getSpecialtyServices());
-        barber.setShifts(barberDetails.getShifts());
-
-        final Barber updatedBarber = barberRepository.save(barber);
-        return ResponseEntity.ok(updatedBarber);
+        Optional<Barber> updatedBarber = barberService.updateBarber(barberId, barberDetails);
+        return updatedBarber.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteBarber(@PathVariable(value = "id") Long barberId) {
-        Optional<Barber> barber = barberRepository.findById(barberId);
-        if(!barber.isPresent()){
+        boolean isRemoved = barberService.deleteBarber(barberId);
+        if(!isRemoved){
             return ResponseEntity.notFound().build();
         }
 
-        barberRepository.delete(barber.get());
         return ResponseEntity.ok().build();
     }
 }
