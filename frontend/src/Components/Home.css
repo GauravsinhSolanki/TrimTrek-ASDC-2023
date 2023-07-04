@@ -9,8 +9,8 @@
   font-style: normal;
 }
 .home_container {
-  height: 900px; /* Set the height of the container to 100% of the viewport height */
-  display: flex; /* Use flexbox to center the text vertically and horizontally */
+  height: 900px; 
+  display: flex; 
   flex-direction: column;
   justify-content: center; /* Center items horizontally */
   align-items: center;

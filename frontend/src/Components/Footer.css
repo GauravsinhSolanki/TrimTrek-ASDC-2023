@@ -1,4 +1,4 @@
-/* Footer Styles */
+
 footer {
     background-color: #2a2c32;
     padding: 10rem 0 9rem 0;
@@ -6,12 +6,12 @@ footer {
     justify-content: space-between;
   }
   
-/*---------- change the #7b62d8 with your desired color -------------*/
+
 .stylish-border:before{
     background: #7b62d8;
 }
 
-/*----- change the address hover color, change #fff with your desired color --------*/
+
 .footer .quick-contact .info-item a:hover{
 color: #fff;
 }
@@ -32,7 +32,6 @@ color: #fff;
     margin-bottom: 5px;
   }
   
-  /* Responsive Styles */
   @media (max-width: 768px) {
     footer {
       flex-wrap: wrap;
