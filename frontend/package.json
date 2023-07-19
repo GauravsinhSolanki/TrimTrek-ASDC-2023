@@ -14,7 +14,6 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",
     "react-router-dom": "^6.14.0",
-    "react-scripts": "^1.1.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -32,7 +31,10 @@
   "browserslist": {
     "production": [
       ">0.2%",
+<<<<<<< HEAD
       "not ie <= 11",
+=======
+>>>>>>> a9c366f9ba4b91b91d15324ea3b59380914d5bb1
       "not op_mini all"
     ],
     "development": [
@@ -42,9 +44,14 @@
     ]
   },
   "devDependencies": {
+<<<<<<< HEAD
     "@babel/cli": "^7.22.9",
     "@babel/core": "^7.22.9",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/preset-env": "^7.22.9"
+=======
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "react-scripts": "^5.0.1"
+>>>>>>> a9c366f9ba4b91b91d15324ea3b59380914d5bb1
   }
 }
