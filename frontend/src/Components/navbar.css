@@ -1,65 +1,55 @@
-.navbar {
+.navbar{
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background: #222831;
-    height: 53px;
+    background: #2a2c32;
+    height: 100px;
+    
+}
+
+.navbar_navigation {
     display: flex;
+    height: 100%;
     align-items: center;
     padding: 0 1rem;
 }
+.trimtrek_logo a{
 
-.navbar .navbar_navigation {
-    display: flex;
-    flex-grow: 1;
-    align-items: center;
-    margin-right: 15px;
+    color: white;
+    text-decoration: none;
+    font-size: 1.6rem ;
+    margin-left: 100px;
 }
 
-.navbar .helper {
-    flex-grow: 1;
+.helper{
+    flex: 0.50;
+    padding: 1;
 }
 
-.navbar .nav_items ul {
+.nav_items ul {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
 }
 
-.navbar .nav_items li {
-    margin-right: 1rem;
+.nav_items li{
+    padding: 0 6.5rem;
 }
-
-.navbar .nav_items a {
-    color: #EEEEEE;
+.nav_items a{
+    color: white;
     font-size: 1.6rem;
     text-decoration: none;
 }
-
-.navbar .nav_items a:hover {
-    color: #007bff;
+.nav_items li:hover {
+    height: 100%;
+    background-color: #555555;
+    border-radius: 10px;
+    border: 1px solid white;
 }
 
-@media (max-width: 768px) {
-    .navbar {
-        height: auto;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .navbar .navbar_navigation {
-        width: 100%;
-        justify-content: space-between;
-        padding-bottom: 1rem;
-    }
-
-    .navbar .nav_items ul {
-        flex-direction: column;
-    }
-
-    .navbar .nav_items li {
-        margin-bottom: 0.5rem;
-    }
+.nav_items a:hover,
+.nav_items a:active {
+    color: #007bff;
 }
