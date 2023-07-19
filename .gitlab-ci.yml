@@ -22,7 +22,7 @@ stages:          # List of stages for jobs, and their order of execution
 
 
 backend-build-job:       # This job runs in the build stage, which runs first.
-  image: maven:3.8.1-openjdk-11
+  image: maven:3.8.1-openjdk-16
   stage: build
   script:
     - echo "Backend build start"
@@ -31,7 +31,7 @@ backend-build-job:       # This job runs in the build stage, which runs first.
     - echo "Compile complete."
 
 backend-test-job:   # This job runs in the test stage.
-  image: maven:3.8.1-openjdk-11
+  image: maven:3.8.1-openjdk-16
   stage: test    # It only starts when the job in the build stage completes successfully.
   script:
     - echo "Backend test start"
@@ -48,6 +48,4 @@ frontend-build-job:       # This job runs in the build stage, which runs first.
     - npm install
     - npm run build --if-present
     - echo "Compile complete."
-
-
 
