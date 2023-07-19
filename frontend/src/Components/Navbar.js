@@ -1,5 +1,5 @@
 import React from 'react';
-import "../Components/navbar.css";
+import "../Components/Navbar.css";
 import { Link } from 'react-router-dom'
 
 import Sidebarmenu from '../Components/Sidebarmenu';
