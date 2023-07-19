@@ -4,7 +4,7 @@ import "../Components/navbar.css";
 import { Link } from 'react-router-dom'
 =======
 import React from "react";
-import "../Components/Navbar.css";
+import "../Components/navbar.css";
 import { Link } from "react-router-dom";
 >>>>>>> e198d79c8bd308078081f15b10576d4be6c38e44
 
