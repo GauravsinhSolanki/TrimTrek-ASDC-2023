@@ -1,35 +1,44 @@
-*{
+* {
   margin: 0;
   padding: 0;
 }
+
 @font-face {
   font-family: 'Gistesy';
-  src: url('https://www.cdnfonts.com/download/253073/897e54b163e0763961ab1e70cfd1e8b4') ;
+  src: url('https://www.cdnfonts.com/download/253073/897e54b163e0763961ab1e70cfd1e8b4');
   font-weight: normal;
   font-style: normal;
 }
+
 .home_container {
-  height: 900px; 
-  display: flex; 
+  height: 550px;
+  display: flex;
   flex-direction: column;
-  justify-content: center; /* Center items horizontally */
+  justify-content: center;
   align-items: center;
   background-image: url("../Assests/Homepage.png");
   background-size: cover;
   padding: 1rem;
 }
 
-
 .image_logo {
   font-family: 'Gistesy';
-  font-size: 50px;
+  font-size: 80px;
+  font-weight: bolder;
   text-align: center;
-  
+  color: #222831;
+}
+
+.img-text {
+  margin: 0;
+  padding: 10px;
+  font-weight: bolder;
+  color: #000000;
+  text-shadow: -4.5px 3px 3px rgba(255, 255, 255, 0.8);
 }
 
 .image_text {
-  
+  color: #222831;
   text-align: center;
   font-size: 24px;
 }
-

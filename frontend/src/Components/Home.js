@@ -1,30 +1,26 @@
 import React from "react";
-import Navbar from "./Navbar";
-//import Footer from "./Footer";
-import './Home.css';
+import Navbar from "../Components/Navbar";
+import Footer from "../Components/Footer";
+import "../Components/Home.css";
 function Home() {
   return (
     <div>
       <div>
         <Navbar />
       </div>
-      <main style = {{marginTop: '64px'}}>
+      <main style={{ marginTop: "60px" }}>
         <div className="home_container">
           <div className="image_logo">
-            <p>Trim Trek</p>
+            <p className="img-text">Trim Trek</p>
           </div>
-
-          <div className="image_text">
-            <p>Choose your Perfect Cut</p>
+          <div>
+            <p className="img-text">Choose your Perfect Cut</p>
           </div>
-          
-          
         </div>
       </main>
-      {/* <div>
+      <div>
         <Footer />
-      </div> */}
-
+      </div>
     </div>
   );
 }
