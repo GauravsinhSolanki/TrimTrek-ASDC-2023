@@ -1,15 +1,43 @@
 import React, { useState } from "react";
 import "./login.css";
 import logoImage from "../../Assests/TrimTrekLogo.png";
+import {useNavigate } from "react-router-dom";
 const Login = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    // Perform login logic here
-    alert("Login successful!");
-  };
+ const handleLogin = (e) => {
+   e.preventDefault();
+  
+   fetch("/api/login", {
+     method: "POST",
+     headers: {
+       "Content-Type": "application/json",
+     },
+     body: JSON.stringify({
+       email,
+       password,
+     }),
+   })
+     .then((response) => response.json())
+     .then((data) => {
+       // Handle the response from the backend
+       if (data.success) {
+         // Login successful, perform necessary actions
+         alert("Login successful!");
+         // Redirect or update application state accordingly
+       } else {
+         // Login failed, display error message or handle as needed
+         alert("Login failed!");
+       }
+     })
+     .catch((error) => {
+       // Handle any error that occurred during the API call
+       console.error("Error:", error);
+     });
+ };
+
 
   const handleForgotPassword = (e) => {
     e.preventDefault();
@@ -19,8 +47,7 @@ const Login = () => {
 
   const handleSignup = (e) => {
     e.preventDefault();
-    // Handle signup logic here
-    alert("Signup link clicked!");
+    navigate("/signup")
   };
 
   return (
