@@ -15,10 +15,10 @@ const Navbar = () => {
         <div className='helper'></div>
         <div className='nav_items'>
           <ul>
-                <li><Link to='/'>Home</Link></li>
+                <li><Link to='/Home'>Home</Link></li>
                 <li><Link to='/'>Book Now</Link></li>
                 <li><Link to='/'>Gallery</Link></li>
-                <li><Link to='/'>Offer & Deals</Link></li>
+                <li><Link to='/OffersPage'>Offer & Deals</Link></li>
             </ul>
         </div>
       </nav>
