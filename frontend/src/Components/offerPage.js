@@ -1,5 +1,5 @@
 import React from "react";
-import "./offersPage.css";
+import "../Components/offersPage.css";
 
 const OffersPage = () => {
   const offers = [
