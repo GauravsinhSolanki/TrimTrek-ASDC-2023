@@ -9,7 +9,11 @@ import java.util.Optional;
 @Service
 public class BarberService {
 
-    private final BarberRepository barberRepository;
+    @Autowired
+    private BarberRepository barberRepository;
+
+    @Autowired
+    private OfferService offerService;
 
     @Autowired
     public BarberService(BarberRepository barberRepository) {
@@ -56,5 +60,13 @@ public class BarberService {
             return true;
         }
         return false;
+    }
+
+    public List<Offer> getOffersForBarber(Long barberId) {
+        Barber barber = barberRepository.findById(barberId).orElse(null);
+        if(barber != null) {
+            return offerService.getAllOffersForBarber(barber);
+        }
+        return null;
     }
 }
