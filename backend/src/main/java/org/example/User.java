@@ -14,6 +14,8 @@ public class User {
     public String username;
 
     public String password;
+    private Integer loyaltyPoints=0;
+
     public Long getId() {
         return id;
     }
@@ -38,5 +40,11 @@ public class User {
         this.password = password;
     }
 
+    public Integer getLoyaltyPoints() {
+        return loyaltyPoints;
+    }
 
+    public void setLoyaltyPoints(Integer loyaltyPoints) {
+        this.loyaltyPoints = loyaltyPoints;
+    }
 }
