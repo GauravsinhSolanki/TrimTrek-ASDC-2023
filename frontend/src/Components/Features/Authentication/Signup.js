@@ -1,184 +1,164 @@
-import React, { useState } from "react";
-import "./Signup.css";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-const SignupPage = () => {
-  const [userName, setUserName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [gender, setGender] = useState("");
-  const [dateOfBirth, setDateOfBirth] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [alternativeNumber, setAlternativeNumber] = useState("");
-  const [errors, setErrors] = useState({});
+import React from "react";
+import googlelogo from "../../../Assests/download.png" 
+import './Signup.css'
+import { useEffect } from "react";
+import { useState } from "react";
+function SignupPage(){
+    useEffect(() => {
+        // Hide the emailAlert element on initial load
+        document.getElementById("emailError").style.display = 'none';
+        document.getElementById("numberError").style.display = 'none';
+        document.getElementById("numberAltError").style.display = 'none';
+        document.getElementById("confirmPasswordAlert").style.display = 'none';
+      }, []);
 
-  const validateForm = () => {
-    let errors = {};
-
-    // Validate user name
-    if (!userName.trim()) {
-      errors.userName = "User name is required";
+    const [email, setEmail] = useState("");
+    const [emailError, setEmailError] = useState("");
+  
+    const handleEmailChange = (e) => {
+      const { value } = e.target;
+      validateEmail(value);
+      setEmail(value);
+ 
+    };
+  
+    const validateEmail = (email) => {
+      // Regular expression for email validation
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+      if(document.getElementById("email").value===''){
+        document.getElementById("emailError").style.display = 'none';
     }
-
-    // Validate email
-    if (!email.trim()) {
-      errors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(email)) {
-      errors.email = "Invalid email format";
+    else
+    if(document.getElementById("email").value.match(emailRegex)){
+        document.getElementById("emailError").style.display = 'none';
     }
-
-    // Validate password
-    if (!password.trim()) {
-      errors.password = "Password is required";
-    } else if (password.length < 6) {
-      errors.password = "Password must be at least 6 characters long";
+    else{
+        document.getElementById("emailError").style.display = 'block';
     }
+}
+    const validateNumber = () => {
+        
 
-
-    // Validate gender
-    if (!gender.trim()) {
-      errors.gender = "Gender is required";
-    }
-
-    // Validate date of birth
-    if (!dateOfBirth || !(dateOfBirth instanceof Date) || isNaN(dateOfBirth)) {
-      errors.dateOfBirth = "Date of Birth is required";
-    }
-
+        // Regular expression for number validation
+     const phoneNumberRegex =  /^\+?[0-9]?[-.\s]?(\([0-9]+\))?[-.\s]?[0-9]+[-.\s]?[0-9]+[-.\s]?[0-9]+$/ ;
+        if(document.getElementById("phoneNumber").value===''){
+          document.getElementById("numberError").style.display = 'none';
+      }
+      else
+      if(document.getElementById("phoneNumber").value.match(phoneNumberRegex)){
+          document.getElementById("numberError").style.display = 'none';
+      }
+      else{
+          document.getElementById("numberError").style.display = 'block';
+      }
+    //   return emailRegex.test(email);
+    };
     
+    const validateAltNumber = () => {
 
-    // Validate phone number
-    if (!phoneNumber.trim()) {
-      errors.phoneNumber = "Phone Number is required";
-    }
+        // Regular expression for number validation
+        const phoneAltNumberRegex =  /^\+?[0-9]?[-.\s]?(\([0-9]+\))?[-.\s]?[0-9]+[-.\s]?[0-9]+[-.\s]?[0-9]+$/ ;
+        if(document.getElementById("phoneAltNumber").value===''){
+          document.getElementById("numberAltError").style.display = 'none';
+        }
+        else
+        if(document.getElementById("phoneAltNumber").value.match(phoneAltNumberRegex)){
+          document.getElementById("numberAltError").style.display = 'none';
+        }
+        else{
+          document.getElementById("numberAltError").style.display = 'block';
+        }
+        //   return emailRegex.test(email);
+    };
 
-    // Validate alternative number
-    if (!alternativeNumber.trim()) {
-      errors.alternativeNumber = "Alternative Number is required";
-    }
+    const validateMatchPassword = () => {
+     
 
-    setErrors(errors);
-
-    return Object.keys(errors).length === 0;
-  };
-
-  const handleSignup = (e) => {
-    e.preventDefault();
-
-    if (validateForm()) {
-      // const formattedDateOfBirth = dateOfBirth.toISOString().split("T")[0];
-
-      console.log("Signup form submitted");
-      console.log("User Name:", userName);
-      console.log("Email:", email);
-      console.log("Password:", password); 
-      console.log("Gender:", gender);
-      console.log("Date of Birth:", setDateOfBirth);
-      console.log("Phone Number:", phoneNumber);
-      console.log("Alternative Number:", alternativeNumber);
-      // Perform signup logic here
-    }
-  };
-
-  const handleGoogleSignup = () => {
-    // Handle Google Sign-In logic here
-  };
-
-  return (
-    <div className="signup-container">
-      <div className="form-container-signup">
-        <h1>Sign Up</h1>
-        <form onSubmit={handleSignup}>
-          <div>
-            <label htmlFor="userName">User Name</label>
-            <input
-              type="text"
-              id="userName"
-              value={userName}
-              onChange={(e) => setUserName(e.target.value)}
-            />
-            {errors.userName && <p className="error">{errors.userName}</p>}
+        // Regular expression for number validation
+        if(document.getElementById("password").value==='' || document.getElementById("confirmPassword").value==='' ){
+          document.getElementById("confirmPasswordAlert").style.display = 'none';
+      }
+      else
+      if(document.getElementById("password").value===document.getElementById("confirmPassword").value){
+          document.getElementById("confirmPasswordAlert").style.display = 'none';
+      }
+      else{
+          document.getElementById("confirmPasswordAlert").style.display = 'block';
+      }
+    //   return emailRegex.test(email);
+    };
+    return(
+        <div class="">
+            <div class="m-3 ">      
+                <h1>Registration Page</h1>
+            </div>
+ 
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-6">
+            
+              <div className="mb-3">
+                <label htmlFor="username" class = "label-align">Username</label>
+                <input type="text" className="form-control" id="username" />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="email" class = "label-align">Email</label>
+                <input type="email" className="form-control" id="email" onChange={handleEmailChange} />
+              </div>
+              <div id='emailError' class='text-danger'> This email is not correct</div>
+              <div className="mb-3">
+                <label htmlFor="password" class = "label-align">Password</label>
+                <input type="password" className="form-control" id="password" />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="password" class = "label-align">Confirm Password</label>
+                <input type="password" className="form-control" id="confirmPassword" onChange={validateMatchPassword}/>
+              </div>
+              <div id='confirmPasswordAlert' class='text-danger'> This password are not same</div>
+              <div className="mb-3">
+                <label htmlFor="gender">Gender</label>
+                <select className="form-control" id="gender">
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+           
+            
           </div>
-          <div>
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            {errors.email && <p className="error">{errors.email}</p>}
+  
+          <div className="col-lg-6">
+            <div className="mb-3">
+                <label htmlFor="dob" className="label-align">Date of Birth</label>
+                <input type="date" className="form-control" id="dob" />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="phoneNumber" class = "label-align" >Phone Number</label>
+                <input type="text" className="form-control" id="phoneNumber" onChange={validateNumber} />
+              </div>
+              <div id='numberError' class='text-danger'> This number is not correct</div>
+
+              <div className="mb-3">
+                <label htmlFor="altNumber" class = "label-align">Alternative Number</label>
+                <input type="text" className="form-control" id="phoneAltNumber" onChange={validateAltNumber}/>
+              </div>
+              <div id='numberAltError' class='text-danger'> This Altnumber is not correct</div>
+              <div className="mb-3 border p-4 ">
+                <img
+                 className="small-google-logo" // Apply the custom class here
+                    src={googlelogo}
+                    alt="Google Logo"
+                />
+                <button type="button" className="btn btn-light">
+                Register with Google
+                </button>
+                </div>
           </div>
-          <div>
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            {errors.password && <p className="error">{errors.password}</p>}
-          </div>
-          <div>
-            <label htmlFor="gender">Gender</label>
-            <select
-              id="gender"
-              value={gender}
-              onChange={(e) => setGender(e.target.value)}
-            >
-              <option value="">Select Gender</option>
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-            </select>
-            {errors.gender && <p className="error">{errors.gender}</p>}
-          </div>
-          <div>
-            <label htmlFor="dateOfBirth">Date of Birth</label>
-            <DatePicker
-              id="dateOfBirth"
-              selected={dateOfBirth}
-              onChange={(date) => setDateOfBirth(date)}
-              dateFormat="yyyy-MM-dd"
-              className="date-picker"
-            />
-            {/* Add any date picker specific styles here */}
-          </div>
-          <div>
-            <label htmlFor="phoneNumber">Phone Number</label>
-            <input
-              type="text"
-              id="phoneNumber"
-              value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
-            />
-            {errors.phoneNumber && (
-              <p className="error">{errors.phoneNumber}</p>
-            )}
-          </div>
-          <div>
-            <label htmlFor="alternativeNumber">Alternative Number</label>
-            <input
-              type="text"
-              id="alternativeNumber"
-              value={alternativeNumber}
-              onChange={(e) => setAlternativeNumber(e.target.value)}
-            />
-            {errors.alternativeNumber && (
-              <p className="error">{errors.alternativeNumber}</p>
-            )}
-          </div>
-          <button type="submit">Next &#62; &#62;</button>
-        </form>
-        <div className="oauth-container">
-          <p className="oauth-text">Or sign up with:</p>
-          <button className="google-signup" onClick={handleGoogleSignup}>
-            <span className="google-icon"></span>
-            Google
-          </button>
         </div>
       </div>
-    </div>
-  );
-};
+      </div>
 
+    );
+
+}
 export default SignupPage;
