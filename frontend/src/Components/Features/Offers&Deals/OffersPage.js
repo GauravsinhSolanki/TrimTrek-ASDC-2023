@@ -46,7 +46,6 @@ const OffersPage = () => {
   return (
     <div className="offers-container">
       <Navbar />
-      <Sidebarmenu />
       <h1 className="offers-title">Offers and Deals</h1>
       <div className="offers-list">
         {offers.map((offer) => (

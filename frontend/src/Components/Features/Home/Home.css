@@ -47,4 +47,8 @@
   object-fit: cover;
 }
 
+.card-body{
+  margin-top: 6em;
+  margin-left: 9em;
+}
 
