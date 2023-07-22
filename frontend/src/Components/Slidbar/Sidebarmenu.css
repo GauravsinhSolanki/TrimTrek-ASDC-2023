@@ -1,0 +1,85 @@
+.sidebar {
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
+
+.menu-bars {
+    margin-left: 2rem;
+    font-size: 2rem;
+    background: none;
+    color: #222831;
+}
+
+.menu-bars1 {
+    color: white;
+    text-decoration: none;
+    font-size: 1.6rem;
+    margin-left: 10px;
+}
+
+.side-menu {
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 20%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    transition: 350ms;
+    z-index: 100;
+}
+
+.side-menu.active {
+    left: 0;
+}
+
+.side-text {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 16px;
+    list-style: none;
+    height: 60px;
+    width: 100%;
+}
+
+.side-text a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    border-radius: 4px;
+}
+
+.side-text a:hover {
+    background-color: #1a83ff;
+    transition: background-color 0.3s;
+}
+
+/* Sidebar toggle styles */
+.sidebar-toggle {
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+}
+
+.sidebar-toggle span {
+    margin-left: 16px;
+}
+
+.menu-bars.active {
+    transform: rotate(90deg);
+    transition: transform 0.3s;
+}

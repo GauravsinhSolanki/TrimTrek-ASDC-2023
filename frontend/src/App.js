@@ -1,10 +1,10 @@
 import "./App.css";
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Login from "./Components/Authentication/Login";
-import Home from "./Components/Home";
-import OffersPage from "./Components/OffersPage";
-import SignupPage from "./Components/Authentication/Signup";
+import Login from "./Components/Features/Authentication/Login";
+import Home from "./Components/Features/Home/Home";
+import OffersPage from "./Components/Features/Offers&Deals/OffersPage";
+import SignupPage from "./Components/Features/Authentication/Signup";
 function App() {
   return (
     <div className="App">
@@ -12,8 +12,8 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Login />} />
           <Route exact path="/home" element={<Home />} />
-          <Route exact path="/Signup" element={<SignupPage/>} />
-          <Route exact path="/OffersPage" element={<OffersPage/>} />
+          <Route exact path="/signup" element={<SignupPage />} />
+          <Route exact path="/OffersPage" element={<OffersPage />} />
         </Routes>
       </Router>
     </div>
