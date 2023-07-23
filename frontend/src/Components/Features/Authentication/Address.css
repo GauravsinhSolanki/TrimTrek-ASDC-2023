@@ -1,0 +1,74 @@
+/* Center the form */
+.address-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .address-container h1 {
+    margin-bottom: 20px;
+  }
+  
+  .address-container form {
+    width: 300px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  /* Style the labels */
+  .address-container label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-align: left; /* Set label alignment to the left */
+  }
+  
+  /* Style the input fields */
+  .address-container input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 15px;
+  }
+  
+  /* Style the button group */
+  .address-container .button-group {
+    display: flex;
+    flex-direction: column; /* Set the buttons to display in a column */
+    align-items: center; /* Center align the buttons horizontally */
+    margin-top: 40px; /* Add margin of 2 lines (2 * 20px) between the buttons and the input fields */
+  }
+  
+  /* Add margin between the buttons */
+  .address-container button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-bottom: 20px; /* Add margin of 2 lines between the buttons */
+  }
+  
+  .address-container button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Add styles for the popup container */
+  .address-container .popup-container {
+    position: absolute;
+    top: 80%;
+    right: -100%;
+    transform: translateY(-50%);
+    width: 300px; /* Adjust the width as needed */
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #fff; /* Set the background color */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Add a shadow effect */
+    z-index: 9999; /* Ensure the popup is on top of other elements */
+  }
+  
