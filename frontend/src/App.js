@@ -5,7 +5,7 @@ import Login from "./Components/Features/Authentication/Login";
 import Home from "./Components/Features/Home/Home";
 import OffersPage from "./Components/Features/Offers&Deals/OffersPage";
 import SignupPage from "./Components/Features/Authentication/Signup";
-
+import Address from "./Components/Features/Authentication/Address";
 function App() {
   return (
     <div className="App">
@@ -15,6 +15,7 @@ function App() {
           <Route exact path="/home" element={<Home />} />
           <Route exact path="/signup" element={<SignupPage />} />
           <Route exact path="/OffersPage" element={<OffersPage />} />
+          <Route exact path="/Address" element={<Address/>} />
         </Routes>
       </Router>
     </div>

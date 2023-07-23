@@ -4,6 +4,7 @@ import "./Signup.css";
 import { useEffect } from "react";
 import { useState } from "react";
 import { postData } from "../../postApi";
+import { useNavigate } from "react-router-dom";
 
 function SignupPage() {
   useEffect(() => {
@@ -15,8 +16,9 @@ function SignupPage() {
 
   const [email_id, setEmail] = useState("");
   const [username, setUsername] = useState("");
+  const navigate = useNavigate();
   // const [emailError, setEmailError] = useState("");
-
+  
   const handleNext = (e) => {
     e.preventDefault();
 
@@ -35,6 +37,7 @@ function SignupPage() {
     postData(JSON.stringify(user), "/user/")
       .then((response) => {
         if (response.status === 200) {
+          navigate("/address");
           console.log("User created:", response.data);
           localStorage.setValue("user_emailId", email_id);
         }
@@ -42,7 +45,7 @@ function SignupPage() {
       .catch((error) => {
         console.error("Error creating user:", error);
       });
-  };
+  };  
 
   const handleEmailChange = (e) => {
     const { value } = e.target;
