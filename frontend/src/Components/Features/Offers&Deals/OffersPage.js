@@ -1,6 +1,6 @@
 import React from "react";
 import "./OffersPage.css";
-import Sidebarmenu from "../../Slidbar/Sidebarmenu";
+// import Sidebarmenu from "../../Slidbar/Sidebarmenu";
 import Navbar from "../../Navbar/Navbar";
 
 const OffersPage = () => {

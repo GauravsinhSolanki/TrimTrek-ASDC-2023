@@ -2,21 +2,44 @@ import React, { useState } from "react";
 import "./login.css";
 import logoImage from "../../../Assests/TrimTrekLogo.png";
 import { useNavigate } from "react-router-dom";
-
+import { getData } from "../../getApi";
 const Login = () => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState("");
+  const [emailId, setEmail] = useState();
+  const [userPassWord, setPassword] = useState("");
   const navigate = useNavigate();
- 
- const handleLogin = (e) => {
-   e.preventDefault();
 
+  const handleLogin = async (e) => {
+    e.preventDefault();
 
- };
+    const url = `user/sign-in-by-/${emailId}/${userPassWord}`;
+
+    getData(url, {})
+      .then((response) => {
+        if (response.status === 200) {
+          console.log("User created:", response.data);
+          navigate("/home");
+        } else {
+          alert("Invalid Credtial");
+        }
+      })
+      .catch((error) => {
+        console.error("Error creating user:", error);
+      });
+  };
+
+  const handleEmail = (e) => {
+    e.preventDefault();
+    const { value } = e.target;
+    setEmail(value);
+  };
+  const handlePassword = (e) => {
+    e.preventDefault();
+    const { value } = e.target;
+    setPassword(value);
+  };
 
   const handleForgotPassword = (e) => {
     e.preventDefault();
-    // Handle forgot password logic here
     alert("Forgot password link clicked!");
   };
 
@@ -27,12 +50,8 @@ const Login = () => {
 
   return (
     <div className="login-container">
-      
       <div className="image-container">
-        <img
-          src={logoImage}
-          alt="Barber Login Page"
-        />
+        <img src={logoImage} alt="Barber Login Page" />
       </div>
       <div className="form-container">
         <h1>TrimTrek</h1>
@@ -40,18 +59,18 @@ const Login = () => {
           <h2>Login here</h2>
           <input
             type="email"
-            id="email"
+            id="emailId"
             placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={emailId}
+            onChange={handleEmail}
             required
           />
           <input
             type="password"
             id="password"
             placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={userPassWord}
+            onChange={handlePassword}
             required
           />
           <button type="submit">Login</button>
