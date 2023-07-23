@@ -3,6 +3,7 @@ import "./login.css";
 import logoImage from "../../../Assests/TrimTrekLogo.png";
 import { useNavigate } from "react-router-dom";
 import { getData } from "../../getApi";
+
 const Login = () => {
   const [emailId, setEmail] = useState();
   const [userPassWord, setPassword] = useState("");
