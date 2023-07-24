@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "../../Navbar/Navbar";
 import Footer from "../../Footer/Footer";
 import "./Home.css";
-import { Carousel } from "bootstrap";
+// import { Carousel } from "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Image1 from "../../../Assests/Title1.jpg";
 import Coloumn1 from "../../../Assests/Img1.jpg";
@@ -50,21 +50,21 @@ function Home() {
               <img
                 src={Coloumn1}
                 class="d-block w-100 object-fit-cover"
-                alt="Slide 1"
+                alt="Barber slide 1"
               />
             </div>
             <div class="carousel-item">
               <img
                 src={Coloumn2}
                 class="d-block w-100 object-fit-cover"
-                alt="Slide 2"
+                alt="Barber Slide 2"
               />
             </div>
             <div class="carousel-item">
               <img
                 src={Coloumn3}
                 class="d-block w-100 object-fit-cover"
-                alt="Slide 3"
+                alt="Barber Slide 3"
               />
             </div>
           </div>
@@ -75,7 +75,7 @@ function Home() {
               <img
                 src={Image1}
                 className="img-fluid rounded"
-                alt="Card Image"
+                alt="Barber Img 3"
               />
             </div>
             <div className="col-md-7 mt-3  d-flex align-items-centre">
@@ -97,7 +97,11 @@ function Home() {
               </div>
             </div>
             <div className="col-md-3 mt-3">
-              <img src={Card2} className="img-fluid rounded" alt="Card Image" />
+              <img
+                src={Card2}
+                className="img-fluid rounded"
+                alt="Barber Img 1"
+              />
             </div>
             <div className="col-md-7 mt-3 d-flex align-items-centre">
               <div className="card-body ">
@@ -116,7 +120,11 @@ function Home() {
               </div>
             </div>
             <div className="col-md-3 mt-3">
-              <img src={Card3} className="img-fluid rounded" alt="Card Image" />
+              <img
+                src={Card3}
+                className="img-fluid rounded"
+                alt="Barber Img 2"
+              />
             </div>
             <div className="col-md-7 mt-3 d-flex align-items-centre">
               <div className="card-body ">
