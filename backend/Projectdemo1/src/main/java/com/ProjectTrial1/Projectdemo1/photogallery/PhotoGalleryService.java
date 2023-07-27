@@ -15,15 +15,13 @@ public class PhotoGalleryService {
         return photoGalleryRepository.findAll();
     }
 
-    public Optional<PhotoGallery> getPhotoGalleryById(int id) {
-        return photoGalleryRepository.findById(id);
+    public Optional<PhotoGallery> getPhotoGalleryByEmailId(String imageId) {
+        return photoGalleryRepository.findByImageId(imageId);
     }
 
     public PhotoGallery savePhotoGallery(PhotoGallery photoGallery) {
         return photoGalleryRepository.save(photoGallery);
     }
 
-    public void deletePhotoGallery(int id) {
-        photoGalleryRepository.deleteById(id);
-    }
+
 }

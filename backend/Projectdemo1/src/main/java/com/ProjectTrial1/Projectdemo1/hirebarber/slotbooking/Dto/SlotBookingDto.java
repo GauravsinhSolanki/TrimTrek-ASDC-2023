@@ -22,4 +22,5 @@ public class SlotBookingDto {
     private String customerId;
     private String barberId;
 
+
 }

@@ -1,5 +1,6 @@
 package com.ProjectTrial1.Projectdemo1.barberinventory;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -13,9 +14,15 @@ public class BarberInventoryService {
     BarberInventoryRepository barberInventoryRepository;
 
     public BarberInventory saveBarberInventory(BarberInventory barberInventory) {
+        String generatedString = generateUniqueUserId();
+
+        barberInventory.setProductId(generatedString);
         return barberInventoryRepository.save(barberInventory);
     }
-
+    private String generateUniqueUserId() {
+        String generatedProductId = RandomStringUtils.random(11, true, true);
+        return generatedProductId;
+    }
     public List<BarberInventory> getAllBarberInventories() {
         return barberInventoryRepository.findAll();
     }

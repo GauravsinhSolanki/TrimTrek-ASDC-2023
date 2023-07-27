@@ -8,5 +8,6 @@ public interface RoleRepository  {
 	Role findByRoleId(String id);
 	Role save(Role role);
 	List<Role> findAll();
+	Role findById(int id);
 
 }

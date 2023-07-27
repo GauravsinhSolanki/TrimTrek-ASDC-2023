@@ -11,11 +11,11 @@ import java.util.List;
 public class BarberServiceServices {
 
     @Autowired
-    BarberServiceRepository barberServiceRepository;
+    BarberServiceJdbcRepository barberServiceJdbcRepository;
 
     private static final Logger LOG = LoggerFactory.getLogger(BarberServiceServices.class);
     public List<BarberService> getAllBarberServices() {
-        List<BarberService> list = barberServiceRepository.findAll();
+        List<BarberService> list = barberServiceJdbcRepository.getAllBarberServices();
         LOG.debug("getAllBarberServices list: " + list);
         return list;
     }
@@ -23,12 +23,12 @@ public class BarberServiceServices {
 
     public BarberService addBarberService(BarberService barberService) {
         LOG.debug("addServiceRequest serviceRequestEntity: " + barberService);
-        return barberServiceRepository.save(barberService);
+        return barberServiceJdbcRepository.addBarberService(barberService);
     }
 
     public BarberService getBarberServiceByServiceId(String serviceId) {
         LOG.debug("getServiceByServiceRequestId serviceRequestId: " + serviceId);
-        BarberService barberService = barberServiceRepository.findByServiceId(serviceId);
+        BarberService barberService = barberServiceJdbcRepository.getBarberServiceByServiceId(serviceId);
         LOG.debug("getServiceByServiceRequestId serviceRequestId: " + serviceId);
         return barberService;
     }

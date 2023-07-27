@@ -1,8 +1,10 @@
 package com.ProjectTrial1.Projectdemo1.hirebarber.slotbooking;
 
 
+import com.ProjectTrial1.Projectdemo1.EmailService;
 import com.ProjectTrial1.Projectdemo1.contact.AddressDto;
 import com.ProjectTrial1.Projectdemo1.contact.AddressServices;
+import com.ProjectTrial1.Projectdemo1.hirebarber.barberservice.BarberServiceJdbcRepository;
 import com.ProjectTrial1.Projectdemo1.hirebarber.barbershift.BarberShift;
 import com.ProjectTrial1.Projectdemo1.hirebarber.barbershift.BarberShiftService;
 import com.ProjectTrial1.Projectdemo1.hirebarber.barbershift.HolidayService;
@@ -41,10 +43,6 @@ public class BookedSlotsServices {
 
     private List<BarberShift> list;
 
-
-//    @Value("${customerSiteTravel.travelTime}")
-//    private Integer customerSiteTravel;
-
     @Value("${error.message.holiday-exist}")
     private String holidayExistError;
 
@@ -81,7 +79,11 @@ public class BookedSlotsServices {
     @Autowired
     AddressServices addressServices;
 
+    @Autowired
+    BarberServiceJdbcRepository barberServiceJdbcRepository;
 
+    @Autowired
+    private EmailService emailService;
 
     public List<BookedSlots> bookSlotForGivenRequest(LocalDate serviceDate) {
         LOG.debug("bookSlotForGivenRequest serviceDate : " + serviceDate);
@@ -100,10 +102,10 @@ public class BookedSlotsServices {
 
         List<AddressDto> addressOfCustomer = addressServices.getAddressByUserId(customerId);
 
-        if (holidayService.dateExistsOrNot(serviceDate) == true) {
-            LOG.error("There is a holiday, slot cannot be booked");
-            throw new HolidayExistException(holidayExistError);
-        }
+//        if (holidayService.dateExistsOrNot(serviceDate) == true) {
+//            LOG.error("There is a holiday, slot cannot be booked");
+//            throw new HolidayExistException(holidayExistError);
+//        }
 
         LocalDate today = LocalDate.now();
         if (serviceDate.isBefore(today)) {
@@ -118,7 +120,7 @@ public class BookedSlotsServices {
 
 
         List<BookedSlots> subshifts = eliminateBookedSlot(serviceDate);
-//        serviceDuration = serviceDuration + customerSiteTravel;
+
 
         for (BookedSlots c : subshifts) {
             LocalTime sT = c.getStartTime();
@@ -139,24 +141,24 @@ public class BookedSlotsServices {
                     timeslot.setEndTime(sT);
 
                     LocalTime now = LocalTime.now();
-                    if (!(timeslot.getEndTime().compareTo(eT) > 0) && (now.isAfter(timeslot.getStartTime()))) {
+//                    if (!(timeslot.getEndTime().compareTo(eT) > 0) && (now.isAfter(timeslot.getStartTime()))) {
 
                         timeslot.setBarberId(c.getBarberId());
 
                         List<AddressDto> addressOfBarber = addressServices.getAddressByUserId(c.getBarberId());
 
 
-                        for (AddressDto x : addressOfCustomer) {
-                            for (AddressDto Y : addressOfBarber){
+//                        for (AddressDto x : addressOfCustomer) {
+//                            for (AddressDto Y : addressOfBarber){
 //                            if (x.getServiceZoneId() == Y.getServiceZoneId()) {
                                 slots.add(timeslot);
 //                            }
-                            }
-                        }
+//                            }
+//                        }
 
 
                         LOG.debug("getAllSlotForThisRequest timeslot : " + timeslot);
-                    }
+//                    }
 
                     sT = timeslot.getEndTime();
                     LOG.debug("getAllSlotForThisRequest sT : " + sT);
@@ -223,10 +225,10 @@ public class BookedSlotsServices {
 
                         if (!(timeAvailableSlot.getStartTime() == timeAvailableSlot.getEndTime())) {
 
-                            // changes here 20/10/2022
+
                             timeAvailableSlot.setBarberId(b.getBarberId());
 
-                            // changes here 14/11/2022
+
 //                            timeAvailableSlot.setServiceZoneId(b.getServiceZoneId().getServiceZoneId());
 
                             System.out.println("heeeyyyyyyy hererererer" + b.getBarberId());
@@ -249,10 +251,9 @@ public class BookedSlotsServices {
             if (!(timeAvailableSlot2.getStartTime() == timeAvailableSlot2.getEndTime()))
                 LOG.debug("getsubshift timeAvailableSlot2 : " + timeAvailableSlot2);
 
-            // changes here 20/10/2022
             timeAvailableSlot2.setBarberId(b.getBarberId());
 
-            // changes here 14/11/2022
+
 //            timeAvailableSlot2.setServiceZoneId(b.getServiceZoneId().getServiceZoneId());
             System.out.println("heeeyyyyyyy 2222222" + b.getBarberId());
             fl.add(timeAvailableSlot2);
@@ -372,18 +373,18 @@ public class BookedSlotsServices {
 
     }
 
-    public BookedSlots makeInvalid(String bookingId) {
-
-        LOG.debug("makeInvalid bookingId : " + bookingId);
-
-        BookedSlots bookedSlots = bookedSlotsRepository.findByBookingId(bookingId);
-
-//        bookedSlots.setActive(false);
-        bookedSlotsRepository.save(bookedSlots);
-
-        LOG.debug("makeInvalid bookedSlots : " + bookedSlots);
-        return bookedSlots;
-    }
+//    public BookedSlots makeInvalid(String bookingId) {
+//
+//        LOG.debug("makeInvalid bookingId : " + bookingId);
+//
+//        BookedSlots bookedSlots = bookedSlotsRepository.findByBookingId(bookingId);
+//
+////        bookedSlots.setActive(false);
+//        bookedSlotsRepository.save(bookedSlots);
+//
+//        LOG.debug("makeInvalid bookedSlots : " + bookedSlots);
+//        return bookedSlots;
+//    }
 
     public BookedSlots addLeave(LeaveBookingDto leaveBookingDto) throws BookedSlotException {
 
@@ -435,7 +436,7 @@ public class BookedSlotsServices {
 
         for (BookedSlots loop : bookedSlotAndLeave) {
             LOG.debug("getAllLeave loop : " + loop);
-            if (loop.getServiceId() == null) {
+            if (loop.getServiceId() == 0 ) {
                 list.add(loop);
             }
         }
@@ -449,10 +450,10 @@ public class BookedSlotsServices {
         LOG.debug("bookDtoSlot slotBookingDto : " + slotBookingDto);
 
 
-        if (holidayService.dateExistsOrNot(slotBookingDto.getServiceDate()) == true) {
-            LOG.error("There is a holiday, slot cannot be booked");
-            throw new HolidayExistException(holidayExistError);
-        }
+//        if (holidayService.dateExistsOrNot(slotBookingDto.getServiceDate()) == true) {
+//            LOG.error("There is a holiday, slot cannot be booked");
+//            throw new HolidayExistException(holidayExistError);
+//        }
 
         if (slotBookingDto.getEndTime().compareTo(slotBookingDto.getStartTime()) < 1) {
             LOG.error("EndTime should not be less than StartTime");
@@ -474,7 +475,7 @@ public class BookedSlotsServices {
         if (bookedDate.isEmpty()) {
             BookedSlots bookedSlots = convertDtoToEntitySlotBooking(slotBookingDto);
 //            bookedSlots.setTravelDuration(customerSiteTravel);
-            bookedSlots.setBookingId(generateBookingId(bookedSlots.getServiceId().getServiceId(), bookedSlots.getServiceDate(), bookedSlots.getCustomerId()));
+            bookedSlots.setBookingId(generateBookingId(barberServiceJdbcRepository.findById(bookedSlots.getServiceId()).getServiceId(), bookedSlots.getServiceDate(), bookedSlots.getCustomerId()));
             LOG.debug("bookDtoSlot bookedSlots : " + bookedSlots);
             return bookedSlotsRepository.save(bookedSlots);
         }
@@ -504,8 +505,15 @@ public class BookedSlotsServices {
 
         BookedSlots bookedSlots = convertDtoToEntitySlotBooking(slotBookingDto);
 //        bookedSlots.setTravelDuration(customerSiteTravel);
-        bookedSlots.setBookingId(generateBookingId(bookedSlots.getServiceId().getServiceId(), bookedSlots.getServiceDate(), bookedSlots.getCustomerId()));
+        bookedSlots.setBookingId(generateBookingId(barberServiceJdbcRepository.findById(bookedSlots.getServiceId()).getServiceId(), bookedSlots.getServiceDate(), bookedSlots.getCustomerId()));
         LOG.debug("bookDtoSlot bookedSlots : " + bookedSlots);
+
+        String toEmail = slotBookingDto.getCustomerId();
+        String subject = "Appointment Confirmation at TrimTrek";
+        String emailText = "Your appointment has been booked successfully on " + slotBookingDto.getServiceDate() + " from " + slotBookingDto.getStartTime() + " to " + slotBookingDto.getEndTime() + ".\n\nThank you for choosing our service!";
+
+        emailService.sendEmail(toEmail, subject, emailText);
+
         return bookedSlotsRepository.save(bookedSlots);
     }
 
@@ -526,7 +534,7 @@ public class BookedSlotsServices {
         bookedSlots.setStartTime(slotBookingDto.getStartTime());
         bookedSlots.setEndTime(slotBookingDto.getEndTime());
         bookedSlots.setBarberId(slotBookingDto.getBarberId());
-        bookedSlots.setServiceId(barberServiceServices.getBarberServiceByServiceId(slotBookingDto.getServiceId()));
+        bookedSlots.setServiceId(barberServiceServices.getBarberServiceByServiceId(slotBookingDto.getServiceId()).getId());
 
         LOG.debug("convertDtoToEntity bookedSlots : " + bookedSlots);
 
@@ -542,7 +550,7 @@ public class BookedSlotsServices {
         slotBookingDto.setStartTime(bookedSlots.getStartTime());
         slotBookingDto.setEndTime(bookedSlots.getEndTime());
         slotBookingDto.setBarberId(bookedSlots.getBarberId());
-        slotBookingDto.setServiceId(bookedSlots.getServiceId().getServiceId());
+        slotBookingDto.setServiceId(barberServiceJdbcRepository.findById(bookedSlots.getServiceId()).getServiceId());
         LOG.debug("convertEntityToDto slotBookingDto : " + slotBookingDto);
 
         return slotBookingDto;
@@ -556,7 +564,7 @@ public class BookedSlotsServices {
 
         for (BookedSlots loop : list) {
 
-            if (loop.getServiceId() == null) {
+            if (loop.getServiceId() == 0) {
                 ViewBookedSlotsDto viewBookedSlotsDto = new ViewBookedSlotsDto();
                 viewBookedSlotsDto.setBarberId(loop.getBarberId());
                 viewBookedSlotsDto.setServiceDate(loop.getServiceDate());
@@ -566,11 +574,11 @@ public class BookedSlotsServices {
                 finalList.add(viewBookedSlotsDto);
             }
 
-            if (!(loop.getServiceId() == null)) {
+            if (!(loop.getServiceId() == 0)) {
                 ViewBookedSlotsDto viewBookedSlotsDto = new ViewBookedSlotsDto();
                 viewBookedSlotsDto.setBookingId(loop.getBookingId());
-                viewBookedSlotsDto.setServiceId(loop.getServiceId().getServiceId());
-                viewBookedSlotsDto.setServiceName(loop.getServiceId().getServiceName());
+                viewBookedSlotsDto.setServiceId(barberServiceJdbcRepository.findById(loop.getServiceId()).getServiceId());
+                viewBookedSlotsDto.setServiceName(barberServiceJdbcRepository.findById(loop.getServiceId()).getServiceName());
                 viewBookedSlotsDto.setServiceDate(loop.getServiceDate());
                 viewBookedSlotsDto.setServiceDuration(loop.getServiceDuration());
                 viewBookedSlotsDto.setStartTime(loop.getStartTime());

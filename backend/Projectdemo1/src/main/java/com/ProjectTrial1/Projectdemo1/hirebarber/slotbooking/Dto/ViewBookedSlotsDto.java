@@ -20,7 +20,6 @@ public class ViewBookedSlotsDto {
     private LocalTime startTime;
     private LocalTime endTime;
     private String customerId;
-    //    private String customerName;
     private String barberId;
 
 }

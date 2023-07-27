@@ -56,16 +56,16 @@ public class BookedSlotsController {
         return bookedSlotsServices.getBookedSlotByCustomerId(customerId);
     }
 
-    @GetMapping(value = {"/gardner/{barberId}/{serviceDate}", "/barber/{barberId}"})
+    @GetMapping(value = {"/barber/{barberId}/{serviceDate}", "/barber/{barberId}"})
     @ResponseBody
     public List<BookedSlots> getBookedSlotByBarberId(@PathVariable String barberId, @PathVariable(name = "serviceDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Optional<LocalDate> serviceDate) {
         return bookedSlotsServices.getBookedSlotByBarberId(barberId, serviceDate);
     }
 
-    @GetMapping("/{bookingId}")
-    public BookedSlots invalid(@PathVariable String bookingId) {
-        return bookedSlotsServices.makeInvalid(bookingId);
-    }
+//    @GetMapping("/{bookingId}")
+//    public BookedSlots invalid(@PathVariable String bookingId) {
+//        return bookedSlotsServices.makeInvalid(bookingId);
+//    }
 
     @PostMapping("/book-leave")
     public BookedSlots requestForLeave(@RequestBody LeaveBookingDto leaveBookingDto) throws BookedSlotException {

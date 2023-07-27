@@ -36,8 +36,7 @@ public class BookedSlots {
     private String barberId;
 
     @Nullable
-    @OneToOne
-    private BarberService serviceId;
+    private int serviceId;
 
     @NonNull
     @Column(name = "service_date")
@@ -46,10 +45,6 @@ public class BookedSlots {
     @NonNull
     @Column(name = "service_duration")
     private int serviceDuration;
-
-    @NonNull
-    @Column(name = "travel_duration")
-    private int travelDuration;
 
     @NonNull
     @Column(name = "start_time")

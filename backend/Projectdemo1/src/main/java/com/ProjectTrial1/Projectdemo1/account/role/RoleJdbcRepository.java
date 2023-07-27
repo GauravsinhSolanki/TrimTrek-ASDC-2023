@@ -87,4 +87,30 @@ public class RoleJdbcRepository implements RoleRepository{
         }
         return roles;
     }
+
+    @Override
+    public Role findById(int id) {
+        Role role = null;
+        try (Connection connection = ConnectionManager.getConnection();
+             PreparedStatement statement = connection.prepareStatement("SELECT * FROM role WHERE id = ?")) {
+            statement.setInt(1, id);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    role = new Role();
+                    role.setId(resultSet.getInt("id"));
+                    role.setRoleId(resultSet.getString("role_id"));
+                    role.setRoleName(resultSet.getString("role_name"));
+                    role.setRoleDescription(resultSet.getString("role_description"));
+                    role.setActive(resultSet.getBoolean("is_active"));
+                    role.setCreatedBy(resultSet.getString("created_by"));
+                    role.setCreatedOn(resultSet.getObject("created_on", LocalDateTime.class));
+                    role.setUpdatedBy(resultSet.getString("updated_by"));
+                    role.setUpdatedOn(resultSet.getObject("updated_on", LocalDateTime.class));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return role;
+    }
 }

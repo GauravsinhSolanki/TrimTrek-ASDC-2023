@@ -37,7 +37,6 @@ public class BarberInventoryJDBCRepository implements BarberInventoryRepository{
 
         } catch (SQLException e) {
             e.printStackTrace();
-            // Handle exceptions appropriately (e.g., log, throw custom exception, etc.)
         }
 
         return barberInventory;
@@ -79,7 +78,7 @@ public class BarberInventoryJDBCRepository implements BarberInventoryRepository{
 
         } catch (SQLException e) {
             e.printStackTrace();
-            // Handle exceptions appropriately (e.g., log, throw custom exception, etc.)
+
         }
 
         return null;
@@ -112,7 +111,6 @@ public class BarberInventoryJDBCRepository implements BarberInventoryRepository{
         return null;
     }
 
-    // Helper method to map ResultSet to BarberInventory object
     private BarberInventory mapResultSetToBarberInventory(ResultSet resultSet) throws SQLException {
         BarberInventory barberInventory = new BarberInventory();
         barberInventory.setId(resultSet.getInt("id"));

@@ -167,4 +167,29 @@ public class UserJdbcRepository implements UserRepository{
 
         return user;
     }
+
+    @Override
+    public User findById(int id) {
+        User user = null;
+
+        String query = "SELECT * FROM users WHERE id = ?";
+
+        try (Connection conn = ConnectionManager.getConnection();
+             PreparedStatement statement = conn.prepareStatement(query)) {
+
+            statement.setInt(1, id);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    user = resultSetToUser(resultSet);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle exception
+        }
+
+        return user;
+    }
 }

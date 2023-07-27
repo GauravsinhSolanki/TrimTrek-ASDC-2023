@@ -28,4 +28,5 @@ public class BarberShiftController {
 	public List<BarberShift> getBookedSlotByBarberId(@PathVariable String barberId) {
 		return offerServicePersonService.getBookedSlotByBarberId(barberId);
 	}
+
 }

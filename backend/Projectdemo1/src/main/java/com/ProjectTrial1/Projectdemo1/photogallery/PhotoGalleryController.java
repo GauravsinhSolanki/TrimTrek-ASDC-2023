@@ -23,9 +23,9 @@ public class PhotoGalleryController {
         return new ResponseEntity<>(photoGalleryList, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<PhotoGallery> getPhotoGalleryById(@PathVariable int id) {
-        Optional<PhotoGallery> photoGallery = photoGalleryService.getPhotoGalleryById(id);
+    @GetMapping("/{imageId}")
+    public ResponseEntity<PhotoGallery> getPhotoGalleryByImageId(@PathVariable String imageId) {
+        Optional<PhotoGallery> photoGallery = photoGalleryService.getPhotoGalleryByEmailId(imageId);
         return photoGallery.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
@@ -36,26 +36,6 @@ public class PhotoGalleryController {
         return new ResponseEntity<>(savedPhotoGallery, HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<PhotoGallery> updatePhotoGallery(@PathVariable int id, @RequestBody PhotoGallery photoGallery) {
-        Optional<PhotoGallery> existingPhotoGallery = photoGalleryService.getPhotoGalleryById(id);
-        if (existingPhotoGallery.isPresent()) {
-            photoGallery.setId(id);
-            PhotoGallery updatedPhotoGallery = photoGalleryService.savePhotoGallery(photoGallery);
-            return new ResponseEntity<>(updatedPhotoGallery, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletePhotoGallery(@PathVariable int id) {
-        Optional<PhotoGallery> existingPhotoGallery = photoGalleryService.getPhotoGalleryById(id);
-        if (existingPhotoGallery.isPresent()) {
-            photoGalleryService.deletePhotoGallery(id);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
+
 }

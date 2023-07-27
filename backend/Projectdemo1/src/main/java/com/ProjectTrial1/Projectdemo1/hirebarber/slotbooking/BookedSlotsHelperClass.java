@@ -2,7 +2,7 @@ package com.ProjectTrial1.Projectdemo1.hirebarber.slotbooking;
 
 import com.ProjectTrial1.Projectdemo1.hirebarber.barbershift.BarberShift;
 import com.ProjectTrial1.Projectdemo1.hirebarber.barbershift.BarberShiftService;
-import com.ProjectTrial1.Projectdemo1.hirebarber.barbershift.HolidayService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,20 +13,14 @@ import java.util.List;
 @Service
 public class BookedSlotsHelperClass {
     private static final Logger LOG = LoggerFactory.getLogger(BookedSlotsServices.class);
-    @Autowired
-    private BookedSlotsRepository bookedSlotsRepository;
 
 
-    private List<BarberShift> list;
 
-//
-//    @Value("${customerSiteTravel.travelTime}")
-//    private Integer customerSiteTravel;
+
     @Autowired
     BarberShiftService offerServicePersonService;
 
-    @Autowired
-    HolidayService holidayService;
+
 
 
     List<BarberShift> getshift(LocalDate serviceDate) {

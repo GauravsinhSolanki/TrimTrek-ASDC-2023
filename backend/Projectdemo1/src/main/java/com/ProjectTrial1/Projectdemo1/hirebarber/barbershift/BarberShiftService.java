@@ -1,5 +1,6 @@
 package com.ProjectTrial1.Projectdemo1.hirebarber.barbershift;
 
+import com.ProjectTrial1.Projectdemo1.account.user.UserServices;
 import com.ProjectTrial1.Projectdemo1.account.userrole.UserRoleServices;
 import com.ProjectTrial1.Projectdemo1.hirebarber.barbershift.barbershiftdto.BarberShiftDto;
 import com.ProjectTrial1.Projectdemo1.hirebarber.exception.InvalidInputException;
@@ -9,8 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
-
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -19,8 +18,11 @@ import java.util.List;
 @Service
 public class BarberShiftService {
     private static final Logger LOG = LoggerFactory.getLogger(BarberShiftService.class);
+
     @Autowired
-    private BarberShiftRepo OfferServicePersonRepository;
+    UserServices userServices;
+    @Autowired
+    private BarberShiftRepository OfferServicePersonRepository;
 
     @Autowired
     UserRoleServices userRoleServices;
@@ -121,7 +123,7 @@ public class BarberShiftService {
     private BarberShift convertDtoToEntity(BarberShiftDto barberShiftDto) {
         LOG.debug("convertDtoToEntity barberShiftDto: " + barberShiftDto);
         BarberShift barberShift = new BarberShift();
-        barberShift.setBarberId(barberShiftDto.getBarberId());
+        barberShift.setBarberId(userServices.getUserIdByEmailId(barberShiftDto.getBarberId()));
         barberShift.setDayOfWeek(barberShiftDto.getDayOfWeek());
         barberShift.setStartTime(barberShiftDto.getStartTime());
         barberShift.setEndTime(barberShiftDto.getEndTime());

@@ -31,7 +31,7 @@ public class BarberShift {
 	private String dayOfWeek;
 
 //	@Column(name = "service_zone_id")
-// changes here 14/11/2022
+
 //	@OneToOne
 //	private ServiceZone serviceZoneId;
 
