@@ -36,6 +36,7 @@ backend-test-job:   # This job runs in the test stage.
   script:
     - echo "Backend test start"
     - cd backend
+    - cd Projectdemo1
     - mvn test
     - echo "test complete."
 
