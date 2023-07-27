@@ -27,6 +27,7 @@ backend-build-job:       # This job runs in the build stage, which runs first.
   script:
     - echo "Backend build start"
     - cd backend
+    - cd Projectdemo1
     - mvn clean package
     - echo "Compile complete."
 
