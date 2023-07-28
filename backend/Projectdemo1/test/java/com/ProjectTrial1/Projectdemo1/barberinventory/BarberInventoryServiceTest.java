@@ -63,6 +63,21 @@ public class BarberInventoryServiceTest {
         verify(barberInventoryRepository, times(1)).findAll();
     }
 
+    @Test
+    public void testGetBarberInventoryByEmailId() {
+        // Given
+        String id = "testId";
+        BarberInventory barberInventory = new BarberInventory();
+        barberInventory.setBarberId(id);
+
+        // When
+        when(barberInventoryRepository.findByEmailId(id)).thenReturn(barberInventory);
+        BarberInventory result = barberInventoryService.getBarberInventoryByEmailId(id);
+
+        // Then
+        assertEquals(barberInventory, result);
+        verify(barberInventoryRepository, times(1)).findByEmailId(id);
+    }
 
     @Test
     public void testReduceProductQuantity() {
