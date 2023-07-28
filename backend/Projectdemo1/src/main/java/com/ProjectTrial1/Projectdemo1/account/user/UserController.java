@@ -53,7 +53,11 @@ public class UserController {
 	public ResponseEntity<String> signIn(@PathVariable String emailId, @PathVariable String userPassWord) {
 		return  services.signIn(emailId,userPassWord);
 	}
-
+	@PostMapping("/sign-out")
+	public ResponseEntity<String> signOut() {
+		ResponseEntity<String> response = services.signOut();
+		return response;
+	}
 
 	@PutMapping("/barber-profile-create")
 	public ResponseEntity<User> barberProfile(@RequestBody BarberDto barberDto) {

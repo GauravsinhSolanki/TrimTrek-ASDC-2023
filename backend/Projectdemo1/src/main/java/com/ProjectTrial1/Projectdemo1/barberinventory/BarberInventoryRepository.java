@@ -10,4 +10,8 @@ public interface BarberInventoryRepository  {
     BarberInventory findByEmailId(String id);
 
     BarberInventory updateQuantity(String id, int newQuantity);
+
+   BarberInventory findByBarberIdAndProductName (String barberId,String productNameIndividual);
+
+    BarberInventory updateQuantityNew(String productNameIndividual, int updatedQuantity , String barberId );
 }

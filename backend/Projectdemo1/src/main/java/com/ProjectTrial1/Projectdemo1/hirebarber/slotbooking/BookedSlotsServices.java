@@ -2,6 +2,8 @@ package com.ProjectTrial1.Projectdemo1.hirebarber.slotbooking;
 
 
 import com.ProjectTrial1.Projectdemo1.EmailService;
+import com.ProjectTrial1.Projectdemo1.barberinventory.BarberInventory;
+import com.ProjectTrial1.Projectdemo1.barberinventory.BarberInventoryService;
 import com.ProjectTrial1.Projectdemo1.contact.AddressDto;
 import com.ProjectTrial1.Projectdemo1.contact.AddressServices;
 import com.ProjectTrial1.Projectdemo1.hirebarber.barberservice.BarberServiceJdbcRepository;
@@ -82,6 +84,8 @@ public class BookedSlotsServices {
     @Autowired
     BarberServiceJdbcRepository barberServiceJdbcRepository;
 
+    @Autowired
+    BarberInventoryService barberInventoryService;
     @Autowired
     private EmailService emailService;
 
@@ -505,14 +509,22 @@ public class BookedSlotsServices {
 
         BookedSlots bookedSlots = convertDtoToEntitySlotBooking(slotBookingDto);
 //        bookedSlots.setTravelDuration(customerSiteTravel);
+
+
         bookedSlots.setBookingId(generateBookingId(barberServiceJdbcRepository.findById(bookedSlots.getServiceId()).getServiceId(), bookedSlots.getServiceDate(), bookedSlots.getCustomerId()));
         LOG.debug("bookDtoSlot bookedSlots : " + bookedSlots);
 
-        String toEmail = slotBookingDto.getCustomerId();
-        String subject = "Appointment Confirmation at TrimTrek";
-        String emailText = "Your appointment has been booked successfully on " + slotBookingDto.getServiceDate() + " from " + slotBookingDto.getStartTime() + " to " + slotBookingDto.getEndTime() + ".\n\nThank you for choosing our service!";
+        LOG.debug("bookDtoSlot performDeductionOperation : " + slotBookingDto.getBarberId() + "and" + slotBookingDto.getServiceName());
+        // reduce product quantity that used while this booking
+        barberInventoryService.performDeductionOperation(slotBookingDto.getBarberId(),slotBookingDto.getServiceName());
 
-        emailService.sendEmail(toEmail, subject, emailText);
+
+        // Email send
+//        String toEmail = slotBookingDto.getCustomerId();
+//        String subject = "Appointment Confirmation at TrimTrek";
+//        String emailText = "Your appointment has been booked successfully on " + slotBookingDto.getServiceDate() + " from " + slotBookingDto.getStartTime() + " to " + slotBookingDto.getEndTime() + ".\n\nThank you for choosing our service!";
+//
+//        emailService.sendEmail(toEmail, subject, emailText);
 
         return bookedSlotsRepository.save(bookedSlots);
     }

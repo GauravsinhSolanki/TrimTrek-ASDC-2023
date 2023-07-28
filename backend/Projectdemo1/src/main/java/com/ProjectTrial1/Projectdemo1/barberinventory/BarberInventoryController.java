@@ -25,9 +25,9 @@ public class BarberInventoryController {
         return barberInventoryService.getAllBarberInventories();
     }
 
-    @GetMapping("/{emailId}")
-    public BarberInventory getBarberInventoryById(@PathVariable String emailId) {
-        return barberInventoryService.getBarberInventoryByEmailId(emailId);
+    @GetMapping("/get-inventory/{emailId}/{productName}")
+    public BarberInventory getBarberInventoryByEmailIdAndProductName(@PathVariable String emailId, @PathVariable String productName) {
+        return barberInventoryService.findByBarberIdAndProductName(emailId,productName);
     }
 
     @PutMapping("/reduce-quantity/{id}/{quantity}")
@@ -47,4 +47,6 @@ public class BarberInventoryController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
     }
+
+
 }

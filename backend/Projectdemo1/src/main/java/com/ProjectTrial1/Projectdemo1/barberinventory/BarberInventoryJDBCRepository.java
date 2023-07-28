@@ -110,7 +110,52 @@ public class BarberInventoryJDBCRepository implements BarberInventoryRepository{
 
         return null;
     }
+    @Override
+    public BarberInventory findByBarberIdAndProductName(String barberId, String productNameIndividual) {
+        try (Connection connection = ConnectionManager.getConnection();
+             PreparedStatement statement = connection.prepareStatement(
+                     "SELECT * FROM barber_inventory WHERE barber_id = ? AND product_name = ?")) {
 
+            statement.setString(1, barberId);
+            statement.setString(2, productNameIndividual);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                return mapResultSetToBarberInventory(resultSet);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle exceptions appropriately (e.g., log, throw custom exception, etc.)
+        }
+
+        return null;
+    }@Override
+    public BarberInventory updateQuantityNew(String productNameIndividual, int updatedQuantity, String barberId) {
+        try (Connection connection = ConnectionManager.getConnection();
+             PreparedStatement statement = connection.prepareStatement(
+                     "UPDATE barber_inventory SET quantity = ? WHERE barber_id = ? AND product_name = ?")) {
+
+            statement.setInt(1, updatedQuantity);
+            statement.setString(2, barberId);
+            statement.setString(3, productNameIndividual);
+
+            int affectedRows = statement.executeUpdate();
+            if (affectedRows == 0) {
+                throw new SQLException("Failed to update quantity for product with name: " + productNameIndividual
+                        + " and barber_id: " + barberId);
+            }
+
+            return findByBarberIdAndProductName(barberId, productNameIndividual);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle exceptions appropriately (e.g., log, throw custom exception, etc.)
+        }
+
+        return null;
+    }
     private BarberInventory mapResultSetToBarberInventory(ResultSet resultSet) throws SQLException {
         BarberInventory barberInventory = new BarberInventory();
         barberInventory.setId(resultSet.getInt("id"));

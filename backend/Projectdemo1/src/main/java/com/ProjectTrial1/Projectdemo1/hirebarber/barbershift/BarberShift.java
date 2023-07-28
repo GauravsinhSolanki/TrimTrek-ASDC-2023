@@ -22,6 +22,7 @@ public class BarberShift {
 	private String barberId;
 	@NonNull
 	@Column(name = "start_time")
+
 	private LocalTime startTime;
 	@NonNull
 	@Column(name = "end_time")

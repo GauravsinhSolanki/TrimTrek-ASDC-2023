@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.apache.commons.lang3.RandomStringUtils;
 
+import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,14 +21,9 @@ public class UserServices {
     @Autowired
     UserRepository userRepo;
 
-//    @Autowired
-//    GardenServices gardenServices;
-//
-//    @Autowired
-//    AddressServices addressServices;
-//
-//    @Autowired
-//    GardeningTaskServices gardeningTaskServices;
+    @Autowired
+    private HttpSession httpSession;
+
 
     public User createUser(UserDto userDto) {
         LOG.debug("createUser, userDto: " + userDto);
@@ -154,20 +150,33 @@ public class UserServices {
     public ResponseEntity<String> signIn(String emailId, String userPassWord) {
         LOG.debug("signIn, emailId: " + emailId);
         LOG.debug("signIn, userPassWord: " + userPassWord);
-       User user = userRepo.findByEmailId(emailId);
+        User user = userRepo.findByEmailId(emailId);
 
         if (user == null) {
             return ResponseEntity.badRequest().body("Invalid username.");
         }
 
-       String passWord = getPasswordByEmailId(emailId);
+        String passWord = getPasswordByEmailId(emailId);
 
         if (!(passWord.equals(userPassWord) )){
             return ResponseEntity.badRequest().body("Invalid password.");
         }
-
+        httpSession.setAttribute("user", user);
         return ResponseEntity.ok("Sign-in successful!");
     }
+
+
+    public ResponseEntity<String> signOut() {
+
+        if (httpSession.getAttribute("user") != null) {
+
+            httpSession.removeAttribute("user");
+            httpSession.invalidate();
+        }
+
+        return ResponseEntity.ok("Sign-out successful!");
+    }
+
 
 
 

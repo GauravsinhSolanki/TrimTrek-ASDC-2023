@@ -32,7 +32,7 @@ public class UserRoleController {
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
-	@GetMapping("/customer/gardener")
+	@GetMapping("/customer/barber")
 	public ResponseEntity<List<UserDto>> getCustomerAndBarber() {
 		List<UserDto> response = services.getCustomerAndBarber();
 		return new ResponseEntity<>(response, HttpStatus.OK);
@@ -45,14 +45,14 @@ public class UserRoleController {
 	}
 
 
-	@GetMapping("/hire-gardener/gardeners")
+	@GetMapping("/hire-barber/barbers")
 	public ResponseEntity<List<UserProfileDto>> getAllBarberUserRole() {
 		List<UserProfileDto> response = services.getAllBarberUserRole();
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
 
-	@GetMapping("/hire-gardener/admins")
+	@GetMapping("/hire-barber/admins")
 	public ResponseEntity<List<UserProfileDto>> getAllAdminRole() {
 		List<UserProfileDto> response = services.getAllAdminRole();
 		return new ResponseEntity<>(response, HttpStatus.OK);

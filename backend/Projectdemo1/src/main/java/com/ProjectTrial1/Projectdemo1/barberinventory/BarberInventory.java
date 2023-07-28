@@ -21,3 +21,4 @@ public class BarberInventory {
     private int quantity;
     private String description;
 }
+
