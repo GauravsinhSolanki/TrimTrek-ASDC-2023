@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import "./login.css";
 import logoImage from "../../../Assests/TrimTrekLogo.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { getData } from "../../getApi";
+import { postData } from "../../postApi";
 
 const Login = () => {
-  const [emailId, setEmail] = useState();
+  const [emailId, setEmail] = useState("");
   const [userPassWord, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
+  const handleCustomerLogin = async (e) => {
     e.preventDefault();
 
     const url = `user/sign-in-by-/${emailId}/${userPassWord}`;
@@ -17,15 +18,64 @@ const Login = () => {
     getData(url, {})
       .then((response) => {
         if (response.status === 200) {
-          console.log("User created:", response.data);
+          console.log("Customer logged in:", response.data);
           navigate("/home");
         } else {
-          alert("Invalid Credtial");
+          alert("Invalid Credential");
+        }
+      }).catch((error) => {
+        console.error("Error logging in:", error);
+      });
+      console.log("outside")
+    const roleData = {
+      userId : localStorage.getItem("user_emailId"),
+      roleId : ["customer-id"]
+    }
+    postData(JSON.stringify(roleData), "/user-role/")
+    .then((response) => {
+      if (response.status === 200) {
+        console.log("Role added:", response.data);
+      }
+    })
+    .catch((error) => {
+      console.error("Error creating user:", error);
+    });
+
+      
+  };
+
+  const handleBarberLogin = async (e) => {
+    e.preventDefault();
+
+    const url = `user/sign-in-by-/${emailId}/${userPassWord}`;
+
+    getData(url, {})
+      .then((response) => {
+        if (response.status === 200) {
+          console.log("Barber logged in:", response.data);
+          navigate("/barberhome");
+        } else {
+          alert("Invalid Credential");
+        }
+      })
+      .catch((error) => {
+        console.error("Error logging in:", error);
+      });
+
+      const roleData = {
+        userId : localStorage.getItem("user_emailId"),
+        roleId : ["barber-id"]
+      }
+      postData(JSON.stringify(roleData), "/user-role/")
+      .then((response) => {
+        if (response.status === 200) {
+          console.log("Role added:", response.data);
         }
       })
       .catch((error) => {
         console.error("Error creating user:", error);
       });
+      
   };
 
   const handleEmail = (e) => {
@@ -33,6 +83,7 @@ const Login = () => {
     const { value } = e.target;
     setEmail(value);
   };
+
   const handlePassword = (e) => {
     e.preventDefault();
     const { value } = e.target;
@@ -56,7 +107,7 @@ const Login = () => {
       </div>
       <div className="form-container">
         <h1>TrimTrek</h1>
-        <form onSubmit={handleLogin}>
+        <form>
           <h2>Login here</h2>
           <input
             type="email"
@@ -74,12 +125,16 @@ const Login = () => {
             onChange={handlePassword}
             required
           />
-          <button type="submit">Login</button>
+          <div className="login-buttons">
+            <button className="login-customer-button" onClick={handleCustomerLogin}>Login as Customer</button>
+
+            <Link to="/barber-registration" onClick={handleBarberLogin} className="barber-register-link">Register as Barber</Link>
+          </div>
+
           <div className="form-links">
             <button onClick={handleForgotPassword} className="link-button">
               Forgot Password
             </button>
-
             <button onClick={handleSignup} className="link-button">
               Signup
             </button>

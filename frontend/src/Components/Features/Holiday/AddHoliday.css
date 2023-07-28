@@ -1,0 +1,58 @@
+/* Styling for the whole page */
+.add-holiday-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.add-holiday-container h1 {
+  text-align: center;
+}
+
+/* Styling for form groups */
+.add-holiday-container .add-holiday-group {
+  margin-bottom: 20px;
+}
+
+.add-holiday-container label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.add-holiday-container input[type="email"],
+.add-holiday-container input[type="text"],
+.add-holiday-container textarea,
+.add-holiday-container select, /* Apply the same style to the select element */
+.add-holiday-container input[type="date"] { /* Apply the same style to the date input */
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.add-holiday-container textarea {
+  resize: vertical;
+}
+
+/* Styling for the Submit button */
+.add-holiday-container .add-holiday-submit {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 18px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.add-holiday-container .add-holiday-submit:hover {
+  background-color: #0056b3;
+}
+
+/* Styling for the related inventory section */
+.add-holiday-container .related-inventory {
+  text-align: center;
+}

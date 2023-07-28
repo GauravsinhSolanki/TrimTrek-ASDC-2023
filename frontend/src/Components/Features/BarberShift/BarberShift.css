@@ -1,0 +1,52 @@
+/* Styling for the whole page */
+.barber-shift-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .barber-shift-container h1 {
+    text-align: center;
+  }
+  
+  /* Styling for form groups */
+  .barber-shift-container .barber-form-group {
+    margin-bottom: 20px;
+  }
+  
+  .barber-shift-container label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .barber-shift-container input[type="time"],
+  .barber-shift-container select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Styling for the Submit button */
+  .barber-shift-container .related-inventory button[type="button"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .barber-shift-container .related-inventory button[type="button"]:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Styling for the related inventory section */
+  .barber-shift-container .related-inventory {
+    text-align: center;
+  }
+  

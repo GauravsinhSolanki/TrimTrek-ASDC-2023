@@ -26,7 +26,6 @@ function SignupPage() {
     const user = {
       userName: username,
       emailId: email_id,
-      
       userPassWord: document.getElementById("user_password").value,
       gender: document.getElementById("gender").value,
       dob: document.getElementById("dob").value,
@@ -39,7 +38,7 @@ function SignupPage() {
         if (response.status === 200) {
           navigate("/address");
           console.log("User created:", response.data);
-          localStorage.setValue("user_emailId", email_id);
+          localStorage.setItem("user_emailId", email_id);
         }
       })
       .catch((error) => {

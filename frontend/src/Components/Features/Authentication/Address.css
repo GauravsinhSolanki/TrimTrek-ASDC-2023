@@ -61,14 +61,20 @@
   .address-container .popup-container {
     position: absolute;
     top: 80%;
-    right: -100%;
+    right: 10%;
     transform: translateY(-50%);
-    width: 300px; /* Adjust the width as needed */
+    width: 335px; /* Adjust the width as needed */
     border: 1px solid #ccc;
-    padding: 20px;
+    padding: 10px;
     border-radius: 8px;
     background-color: #fff; /* Set the background color */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Add a shadow effect */
     z-index: 9999; /* Ensure the popup is on top of other elements */
   }
   
+  .popupalignment{
+    
+    top: 50%;
+    left: -50px;
+    transform: translate(-50%, -50%);
+  }

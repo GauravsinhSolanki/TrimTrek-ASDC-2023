@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./Address.css";
 import RegisterBarberPopup from "./RegisterBarberPopup";
+import { postData } from "../../postApi";
+import { useNavigate } from "react-router-dom/dist";
 
 const Address = () => {
   const [state, setState] = useState("");
@@ -9,15 +11,61 @@ const Address = () => {
   const [locality, setLocality] = useState("");
   const [pincode, setPincode] = useState("");
   const [showPopup, setShowPopup] = useState(false);
+  const navigate = useNavigate();
 
-  const handleRegisterCustomer = () => {
-    // Logic to handle registration as a customer
-    console.log("Registering as Customer");
+  const handleRegisterCustomer = (e) => {
+    e.preventDefault();
+    const address = {
+      userId: localStorage.getItem("user_emailId"),
+      state: state,
+      city: city,
+      house: houseNo,
+      locality: locality,
+      pinCode: pincode,
+      createdBy:localStorage.getItem("user_emailId")
+    };
+
+
+
+    postData(JSON.stringify(address), "/address/")
+    .then((response) => {
+      if (response.status === 200) {
+        navigate("/");
+        console.log("addrss added:", response.data);
+      }
+    })
+    .catch((error) => {
+      console.error("Error creating user:", error);
+    });
+
   };
 
   const handleRegisterBarber = (e) => {
-    e.preventDefault(); // Prevent the form from being submitted
-    setShowPopup(true);
+    e.preventDefault();
+    const address = {
+      userId: localStorage.getItem("user_emailId"),
+      state: state,
+      city: city,
+      house: houseNo,
+      locality: locality,
+      pinCode: pincode,
+      createdBy: localStorage.getItem("user_emailId")
+    };
+
+
+
+    postData(JSON.stringify(address), "/address/")
+    .then((response) => {
+      if (response.status === 200) {
+        // navigate("/");
+        setShowPopup(true);
+        console.log("addrss added:", response.data);
+      }
+    })
+    .catch((error) => {
+      console.error("Error creating user:", error);
+    });
+    // handleRegisterCustomer();
   };
 
   const handleClosePopup = () => {
@@ -61,7 +109,7 @@ const Address = () => {
 
         {showPopup && (
           <div className="popup-container">
-            <RegisterBarberPopup onClose={handleClosePopup} handleRegisterBarber={handleRegisterBarber} />
+            <RegisterBarberPopup onClose={handleClosePopup} handleRegisterBarber={handleRegisterBarber} class="popupalignment" />
           </div>
         )}
       </form>
