@@ -2,7 +2,7 @@ import React from "react";
 import { postData } from "../../postApi";
 
 const AvailableSlots = ({ slots }) => {
-  const handleSlotClick = (slot) => {
+  const  handleSlotClick = (slot) => {
     const customerId = localStorage.getItem("user_emailId"); 
     if (!customerId) {
       alert("Customer ID not found. Please log in or sign up.");

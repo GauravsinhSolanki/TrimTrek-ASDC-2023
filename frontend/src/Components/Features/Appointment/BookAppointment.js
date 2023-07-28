@@ -22,6 +22,7 @@ const BookAppointment = () => {
           setResponseData(responseData);
           const serviceIds = responseData.map((service) => service.serviceId);
           setServiceIdsArray(serviceIds);
+          
         } else {
           alert("Invalid Credential");
         }

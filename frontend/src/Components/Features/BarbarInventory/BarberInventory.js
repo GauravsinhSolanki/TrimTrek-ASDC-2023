@@ -1,17 +1,17 @@
 import { useState } from "react";
 import Navbar from "../../Navbar/Navbar";
 import "./BarberInventory.css";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { postData } from "../../postApi";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const BarberInventory = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   
   const [productName, setProductName] = useState("");
   const [quantity, setQuantity] = useState("");
   const [description, setDescription] = useState("");
-  const [email_id, setEmail] = useState("");
+  // const [email_id, setEmail] = useState("");
 
   const handleNext = (e) => {
     e.preventDefault();
