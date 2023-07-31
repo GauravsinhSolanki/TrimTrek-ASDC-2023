@@ -48,7 +48,7 @@ public class UserAuthenticationController {
 
         // ... Other code ...
 
-        @DeleteMapping("/deleteToken")
+        @PostMapping("/deleteToken")
         public String deleteAuthenticationToken(@RequestBody Map<String,String> request) {
             String user_email = request.get("userEmail");
             boolean isDeleted = userAuthenticationService.deleteUserToken(user_email);

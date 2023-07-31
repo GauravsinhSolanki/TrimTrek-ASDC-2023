@@ -1,13 +1,17 @@
 import React from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 
+import { useNavigate } from "react-router-dom";
 import Sidebarmenu from "../Slidbar/Sidebarmenu";
-handleLogout=()=>{
+
+const handleLogout=()=>{
+  const navigate = useNavigate();
   const authToken = {
     userEmail: localStorage.getItem("user_emailId"),
   };
-  deleteData(authToken, "/user-authentication/deleteToken/")
+  postData(authToken, "/user-authentication/deleteToken/")
     .then((response) => {
       if (response.status === 200) {
         if(response.data != 'true'){

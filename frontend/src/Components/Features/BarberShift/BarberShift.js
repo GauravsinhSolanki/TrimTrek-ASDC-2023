@@ -3,7 +3,10 @@ import Navbar from '../../Navbar/Navbar';
 import './BarberShift.css';
 import { postData } from "../../postApi";
 import { useEffect } from "react";
+import { useNavigate} from "react-router-dom";
+
 function BarberShift() {
+  const navigate = useNavigate();
 useEffect(() => {
  
 const authToken = {

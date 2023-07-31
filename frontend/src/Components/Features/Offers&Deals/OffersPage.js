@@ -3,7 +3,10 @@ import "./OffersPage.css";
 // import Sidebarmenu from "../../Slidbar/Sidebarmenu";
 import Navbar from "../../Navbar/Navbar";
 import { useEffect } from "react";
+import { useNavigate} from "react-router-dom";
+
 function OffersPage() {
+  const navigate = useNavigate();
 useEffect(() => {
  
 const authToken = {

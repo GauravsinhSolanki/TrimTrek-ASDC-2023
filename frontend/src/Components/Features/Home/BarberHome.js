@@ -3,7 +3,11 @@ import "./BarberHome.css";
 import Navbar from "../../Navbar/Navbar";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { useNavigate} from "react-router-dom";
+
 function BarberHome() {
+  const navigate = useNavigate();
+  
 useEffect(() => {
  
 const authToken = {
@@ -23,7 +27,6 @@ const authToken = {
       });
 
   }, []);
-  const navigate = useNavigate();
 
   const handleAddShift = () => {
     navigate("/barbershift");

@@ -3,9 +3,13 @@ import Navbar from "../../Navbar/Navbar";
 import "./BarberInventory.css";
 // import { useEffect } from "react";
 import { postData } from "../../postApi";
+import { useNavigate } from "react-router-dom";
+
+
 // import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 function BarberInventory() {
+  const navigate = useNavigate();
 useEffect(() => {
  
 const authToken = {

@@ -4,7 +4,6 @@ import { getData } from "../../getApi";
 import AvailableSlots from "./AvailableSlots";
 
 import "./BookAppointment.css";
-import { useEffect } from "react";
 function BookAppointment() {
 useEffect(() => {
  

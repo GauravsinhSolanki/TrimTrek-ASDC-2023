@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import "./AddHoliday.css";
 import Navbar from "../../Navbar/Navbar";
 import { useEffect } from "react";
+import { useNavigate} from "react-router-dom";
+
 function AddHoliday() {
+  const navigate = useNavigate();
 useEffect(() => {
  
 const authToken = {
