@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bfd0f0e7-ab5b-46c6-b9b3-147f52833d02" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/ProjectTrial1/Projectdemo1/barberinventory/BarberInventoryServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/ProjectTrial1/Projectdemo1/barberinventory/BarberInventoryServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ProjectTrial1/Projectdemo1/barberinventory/BarberInventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ProjectTrial1/Projectdemo1/barberinventory/BarberInventory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ProjectTrial1/Projectdemo1/barberinventory/BarberInventoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ProjectTrial1/Projectdemo1/barberinventory/BarberInventoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ProjectTrial1/Projectdemo1/barberinventory/BarberInventoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ProjectTrial1/Projectdemo1/barberinventory/BarberInventoryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ProjectTrial1/Projectdemo1/barberinventory/BarberInventoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ProjectTrial1/Projectdemo1/barberinventory/BarberInventoryService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
