@@ -3,6 +3,23 @@ import "./Navbar.css";
 import { Link } from "react-router-dom";
 
 import Sidebarmenu from "../Slidbar/Sidebarmenu";
+handleLogout=()=>{
+  const authToken = {
+    userEmail: localStorage.getItem("user_emailId"),
+  };
+  deleteData(authToken, "/user-authentication/deleteToken/")
+    .then((response) => {
+      if (response.status === 200) {
+        if(response.data != 'true'){
+          navigate("/")
+        }
+      } else {
+      }
+    })
+    .catch((error) => {
+      console.error("Error booking slot:", error);
+    });
+}
 
 const Navbar = () => {
   return (
@@ -25,6 +42,9 @@ const Navbar = () => {
             </li>
             <li>
               <Link to="/OffersPage">Offer & Deals</Link>
+            </li>
+            <li>
+              <Link onClick={handleLogout}>Logout</Link>
             </li>
           </ul>
         </div>

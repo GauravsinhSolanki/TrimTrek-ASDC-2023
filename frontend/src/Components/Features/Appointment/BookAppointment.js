@@ -4,8 +4,27 @@ import { getData } from "../../getApi";
 import AvailableSlots from "./AvailableSlots";
 
 import "./BookAppointment.css";
+import { useEffect } from "react";
+function BookAppointment() {
+useEffect(() => {
+ 
+const authToken = {
+      userEmail: localStorage.getItem("user_emailId"),
+    };
+    postData(authToken, "/user-authentication/checkToken/")
+      .then((response) => {
+        if (response.status === 200) {
+          if(response.data != 'true'){
+            navigate("/")
+          }
+        } else {
+        }
+      })
+      .catch((error) => {
+        console.error("Error booking slot:", error);
+      });
 
-const BookAppointment = () => {
+  }, []);
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedService, setSelectedService] = useState("");
   const [serviceIdsArray, setServiceIdsArray] = useState([]);

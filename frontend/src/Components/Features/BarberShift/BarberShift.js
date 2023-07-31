@@ -2,8 +2,27 @@ import React, { useState } from 'react';
 import Navbar from '../../Navbar/Navbar';
 import './BarberShift.css';
 import { postData } from "../../postApi";
+import { useEffect } from "react";
+function BarberShift() {
+useEffect(() => {
+ 
+const authToken = {
+      userEmail: localStorage.getItem("user_emailId"),
+    };
+    postData(authToken, "/user-authentication/checkToken/")
+      .then((response) => {
+        if (response.status === 200) {
+          if(response.data != 'true'){
+            navigate("/")
+          }
+        } else {
+        }
+      })
+      .catch((error) => {
+        console.error("Error booking slot:", error);
+      });
 
-const BarberShift = () => {
+  }, []);
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('');
   const [dayOfWeek, setDayOfWeek] = useState('');

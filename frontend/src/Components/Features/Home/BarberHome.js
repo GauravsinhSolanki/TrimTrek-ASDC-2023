@@ -2,8 +2,27 @@ import React from "react";
 import "./BarberHome.css";
 import Navbar from "../../Navbar/Navbar";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+function BarberHome() {
+useEffect(() => {
+ 
+const authToken = {
+      userEmail: localStorage.getItem("user_emailId"),
+    };
+    postData(authToken, "/user-authentication/checkToken/")
+      .then((response) => {
+        if (response.status === 200) {
+          if(response.data != 'true'){
+            navigate("/")
+          }
+        } else {
+        }
+      })
+      .catch((error) => {
+        console.error("Error booking slot:", error);
+      });
 
-const BarberHome = () => {
+  }, []);
   const navigate = useNavigate();
 
   const handleAddShift = () => {

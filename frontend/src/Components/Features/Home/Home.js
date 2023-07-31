@@ -10,8 +10,27 @@ import Coloumn2 from "../../../Assests/Img2.jpg";
 import Coloumn3 from "../../../Assests/Img3.jpg";
 import Card2 from "../../../Assests/Card2.jpg";
 import Card3 from "../../../Assests/Card3.jpg";
-
+import { useEffect } from "react";
 function Home() {
+useEffect(() => {
+ 
+const authToken = {
+      userEmail: localStorage.getItem("user_emailId"),
+    };
+    postData(authToken, "/user-authentication/checkToken/")
+      .then((response) => {
+        if (response.status === 200) {
+          if(response.data != 'true'){
+            navigate("/")
+          }
+        } else {
+        }
+      })
+      .catch((error) => {
+        console.error("Error booking slot:", error);
+      });
+
+  }, []);
   return (
     <div>
       <div>
