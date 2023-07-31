@@ -4,14 +4,42 @@ import logoImage from "../../../Assests/TrimTrekLogo.png";
 import { useNavigate, Link } from "react-router-dom";
 import { getData } from "../../getApi";
 import { postData } from "../../postApi";
+import { useEffect } from "react";
 
 const Login = () => {
   const [emailId, setEmail] = useState("");
   const [userPassWord, setPassword] = useState("");
   const navigate = useNavigate();
+  
+  useEffect(() => {
+    
+
+  }, []);
+  
+
+  
+  
 
   const handleCustomerLogin = async (e) => {
     e.preventDefault();
+
+    const authToken = {
+      emailId: localStorage.getItem("user_emailId"),
+    };
+  
+    postData(authToken, "/user-authentication/setToken/")
+      .then((response) => {
+        if (response.status === 200) {
+          if(response.data !== 'true'){
+            navigate("/")
+          }
+        } else {
+        }
+      })
+      .catch((error) => {
+        console.error("Error booking slot:", error);
+      });
+
 
     const url = `user/sign-in-by-/${emailId}/${userPassWord}`;
 
@@ -26,6 +54,8 @@ const Login = () => {
       }).catch((error) => {
         console.error("Error logging in:", error);
       });
+
+
       console.log("outside")
     const roleData = {
       userId : localStorage.getItem("user_emailId"),

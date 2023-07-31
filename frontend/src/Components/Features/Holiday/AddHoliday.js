@@ -1,8 +1,28 @@
 import React, { useState } from "react";
 import "./AddHoliday.css";
 import Navbar from "../../Navbar/Navbar";
+import { useEffect } from "react";
+import { postData } from "../../postApi";
+function AddHoliday() {
+useEffect(() => {
+ 
+const authToken = {
+      userEmail: localStorage.getItem("user_emailId"),
+    };
+    postData(authToken, "/user-authentication/checkToken/")
+      .then((response) => {
+        if (response.status === 200) {
+          if(response.data !== 'true'){
+            window.location.href="/"
+          }
+        } else {
+        }
+      })
+      .catch((error) => {
+        console.error("Error booking slot:", error);
+      });
 
-const AddHoliday = () => {
+  }, []);
   const [holiday, setHoliday] = useState({
     holidayId: "",
     festivalDate: "",

@@ -3,8 +3,26 @@ import "./Address.css";
 import RegisterBarberPopup from "./RegisterBarberPopup";
 import { postData } from "../../postApi";
 import { useNavigate } from "react-router-dom/dist";
+import { useEffect } from "react";
+function Address() {
+useEffect(() => {
+ 
+const authToken = {
+      userEmail: localStorage.getItem("user_emailId"),
+    };
+    postData(authToken, "/user-authentication/checkToken/")
+      .then((response) => {
+        if (response.status === 200) {
+          if(response.data !== 'true'){
+            window.location.href="/"          }
+        } else {
+        }
+      })
+      .catch((error) => {
+        console.error("Error booking slot:", error);
+      });
 
-const Address = () => {
+  }, []);
   const [state, setState] = useState("");
   const [city, setCity] = useState("");
   const [houseNo, setHouseNo] = useState("");

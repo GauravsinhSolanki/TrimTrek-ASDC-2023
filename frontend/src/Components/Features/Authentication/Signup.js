@@ -12,6 +12,24 @@ function SignupPage() {
     document.getElementById("emailError").style.display = "none";
     document.getElementById("numberError").style.display = "none";
     document.getElementById("numberAltError").style.display = "none";
+
+    const authToken = {
+      userEmail: localStorage.getItem("user_emailId"),
+    };
+    postData(authToken, "/user-authentication/checkToken/")
+      .then((response) => {
+        if (response.status === 200) {
+          if(response.data !== 'true'){
+            window.location.href="/"
+          }
+        } else {
+        }
+      })
+      .catch((error) => {
+        console.error("Error booking slot:", error);
+      });
+
+
   }, []);
 
   const [email_id, setEmail] = useState("");
