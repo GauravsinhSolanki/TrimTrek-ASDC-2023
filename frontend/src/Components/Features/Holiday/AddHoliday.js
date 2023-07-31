@@ -3,7 +3,7 @@ import "./AddHoliday.css";
 import Navbar from "../../Navbar/Navbar";
 import { useEffect } from "react";
 import { useNavigate} from "react-router-dom";
-
+import { postData } from "../../postApi";
 function AddHoliday() {
   const navigate = useNavigate();
 useEffect(() => {

@@ -3,24 +3,21 @@ import "./Navbar.css";
 import { Link } from "react-router-dom";
 import { useNavigate} from "react-router-dom";
 
-import { useNavigate } from "react-router-dom";
+import { postData } from "../postApi";
 import Sidebarmenu from "../Slidbar/Sidebarmenu";
 
 const handleLogout=()=>{
-  const navigate = useNavigate();
   const authToken = {
     userEmail: localStorage.getItem("user_emailId"),
   };
-  postData(authToken, "/user-authentication/deleteToken/")
-    .then((response) => {
+  postData(authToken, "/user-authentication/deleteToken/").then((response) => {
       if (response.status === 200) {
         if(response.data != 'true'){
-          navigate("/")
+          window.location.href="/"
         }
       } else {
       }
-    })
-    .catch((error) => {
+    }).catch((error) => {
       console.error("Error booking slot:", error);
     });
 }

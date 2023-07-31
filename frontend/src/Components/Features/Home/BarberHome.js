@@ -3,7 +3,7 @@ import "./BarberHome.css";
 import Navbar from "../../Navbar/Navbar";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { useNavigate} from "react-router-dom";
+import { postData } from "../../postApi";
 
 function BarberHome() {
   const navigate = useNavigate();

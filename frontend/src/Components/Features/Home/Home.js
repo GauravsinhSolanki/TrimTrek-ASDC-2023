@@ -12,6 +12,7 @@ import Card2 from "../../../Assests/Card2.jpg";
 import Card3 from "../../../Assests/Card3.jpg";
 import { useEffect } from "react";
 import { useNavigate} from "react-router-dom";
+import { postData } from "../../postApi";
 
 function Home() {
   const navigate = useNavigate();

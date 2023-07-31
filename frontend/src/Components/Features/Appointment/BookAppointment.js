@@ -2,9 +2,13 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../../Navbar/Navbar";
 import { getData } from "../../getApi";
 import AvailableSlots from "./AvailableSlots";
+import { postData } from "../../postApi";
+import { useNavigate} from "react-router-dom";
 
 import "./BookAppointment.css";
 function BookAppointment() {
+  const navigate = useNavigate();
+
 useEffect(() => {
  
 const authToken = {
