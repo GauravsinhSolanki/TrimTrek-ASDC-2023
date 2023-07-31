@@ -2,9 +2,30 @@ import React from "react";
 import "./BarberHome.css";
 import Navbar from "../../Navbar/Navbar";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { postData } from "../../postApi";
 
-const BarberHome = () => {
+function BarberHome() {
   const navigate = useNavigate();
+  
+useEffect(() => {
+ 
+const authToken = {
+      userEmail: localStorage.getItem("user_emailId"),
+    };
+    postData(authToken, "/user-authentication/checkToken/")
+      .then((response) => {
+        if (response.status === 200) {
+          if(response.data !== 'true'){
+            window.location.href="/"          }
+        } else {
+        }
+      })
+      .catch((error) => {
+        console.error("Error booking slot:", error);
+      });
+
+  }, []);
 
   const handleAddShift = () => {
     navigate("/barbershift");

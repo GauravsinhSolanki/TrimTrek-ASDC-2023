@@ -2,10 +2,29 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../../Navbar/Navbar";
 import { getData } from "../../getApi";
 import AvailableSlots from "./AvailableSlots";
+import { postData } from "../../postApi";
 
 import "./BookAppointment.css";
+function BookAppointment() {
 
-const BookAppointment = () => {
+useEffect(() => {
+ 
+const authToken = {
+      userEmail: localStorage.getItem("user_emailId"),
+    };
+    postData(authToken, "/user-authentication/checkToken/")
+      .then((response) => {
+        if (response.status === 200) {
+          if(response.data !== 'true'){
+            window.location.href="/"          }
+        } else {
+        }
+      })
+      .catch((error) => {
+        console.error("Error booking slot:", error);
+      });
+
+  }, []);
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedService, setSelectedService] = useState("");
   const [serviceIdsArray, setServiceIdsArray] = useState([]);
