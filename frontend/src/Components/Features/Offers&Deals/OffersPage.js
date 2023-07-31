@@ -3,11 +3,9 @@ import "./OffersPage.css";
 // import Sidebarmenu from "../../Slidbar/Sidebarmenu";
 import Navbar from "../../Navbar/Navbar";
 import { useEffect } from "react";
-import { useNavigate} from "react-router-dom";
 import { postData } from "../../postApi";
 
 function OffersPage() {
-  const navigate = useNavigate();
 useEffect(() => {
  
 const authToken = {
@@ -16,8 +14,8 @@ const authToken = {
     postData(authToken, "/user-authentication/checkToken/")
       .then((response) => {
         if (response.status === 200) {
-          if(response.data != 'true'){
-            navigate("/")
+          if(response.data !== 'true'){
+            window.location.href="/"
           }
         } else {
         }

@@ -30,7 +30,7 @@ const Login = () => {
     postData(authToken, "/user-authentication/setToken/")
       .then((response) => {
         if (response.status === 200) {
-          if(response.data != 'true'){
+          if(response.data !== 'true'){
             navigate("/")
           }
         } else {

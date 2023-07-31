@@ -1,7 +1,6 @@
 import React from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
-import { useNavigate} from "react-router-dom";
 
 import { postData } from "../postApi";
 import Sidebarmenu from "../Slidbar/Sidebarmenu";
@@ -12,7 +11,7 @@ const handleLogout=()=>{
   };
   postData(authToken, "/user-authentication/deleteToken/").then((response) => {
       if (response.status === 200) {
-        if(response.data != 'true'){
+        if(response.data !== 'true'){
           window.location.href="/"
         }
       } else {

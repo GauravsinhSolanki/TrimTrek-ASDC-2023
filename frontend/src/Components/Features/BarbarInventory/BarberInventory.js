@@ -3,13 +3,11 @@ import Navbar from "../../Navbar/Navbar";
 import "./BarberInventory.css";
 // import { useEffect } from "react";
 import { postData } from "../../postApi";
-import { useNavigate } from "react-router-dom";
 
 
 // import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 function BarberInventory() {
-  const navigate = useNavigate();
 useEffect(() => {
  
 const authToken = {
@@ -18,9 +16,8 @@ const authToken = {
     postData(authToken, "/user-authentication/checkToken/")
       .then((response) => {
         if (response.status === 200) {
-          if(response.data != 'true'){
-            navigate("/")
-          }
+          if(response.data !== 'true'){
+            window.location.href="/"          }
         } else {
         }
       })

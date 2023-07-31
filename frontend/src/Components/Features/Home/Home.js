@@ -11,11 +11,9 @@ import Coloumn3 from "../../../Assests/Img3.jpg";
 import Card2 from "../../../Assests/Card2.jpg";
 import Card3 from "../../../Assests/Card3.jpg";
 import { useEffect } from "react";
-import { useNavigate} from "react-router-dom";
 import { postData } from "../../postApi";
 
 function Home() {
-  const navigate = useNavigate();
 useEffect(() => {
  
 const authToken = {
@@ -24,8 +22,8 @@ const authToken = {
     postData(authToken, "/user-authentication/checkToken/")
       .then((response) => {
         if (response.status === 200) {
-          if(response.data != 'true'){
-            navigate("/")
+          if(response.data !== 'true'){
+            window.location.href="/"
           }
         } else {
         }

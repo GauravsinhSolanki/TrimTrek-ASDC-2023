@@ -19,8 +19,8 @@ function SignupPage() {
     postData(authToken, "/user-authentication/checkToken/")
       .then((response) => {
         if (response.status === 200) {
-          if(response.data != 'true'){
-            navigate("/")
+          if(response.data !== 'true'){
+            window.location.href="/"
           }
         } else {
         }

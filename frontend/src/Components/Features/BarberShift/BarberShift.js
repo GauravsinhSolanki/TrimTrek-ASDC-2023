@@ -3,10 +3,8 @@ import Navbar from '../../Navbar/Navbar';
 import './BarberShift.css';
 import { postData } from "../../postApi";
 import { useEffect } from "react";
-import { useNavigate} from "react-router-dom";
 
 function BarberShift() {
-  const navigate = useNavigate();
 useEffect(() => {
  
 const authToken = {
@@ -15,8 +13,8 @@ const authToken = {
     postData(authToken, "/user-authentication/checkToken/")
       .then((response) => {
         if (response.status === 200) {
-          if(response.data != 'true'){
-            navigate("/")
+          if(response.data !== 'true'){
+            window.location.href="/"
           }
         } else {
         }
