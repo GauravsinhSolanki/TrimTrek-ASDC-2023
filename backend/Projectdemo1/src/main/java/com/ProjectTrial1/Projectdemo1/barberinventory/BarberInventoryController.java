@@ -18,7 +18,6 @@ public class BarberInventoryController {
     @Autowired
     BarberInventoryService barberInventoryService;
 
-    // HTTP POST request to add a new BarberInventory item
     @PostMapping
     public BarberInventory addBarberInventory(@RequestBody BarberInventory barberInventory) {
         return barberInventoryService.saveBarberInventory(barberInventory);

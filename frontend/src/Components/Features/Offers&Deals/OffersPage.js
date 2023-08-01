@@ -2,8 +2,29 @@ import React from "react";
 import "./OffersPage.css";
 // import Sidebarmenu from "../../Slidbar/Sidebarmenu";
 import Navbar from "../../Navbar/Navbar";
+import { useEffect } from "react";
+import { postData } from "../../postApi";
 
-const OffersPage = () => {
+function OffersPage() {
+useEffect(() => {
+ 
+const authToken = {
+      userEmail: localStorage.getItem("user_emailId"),
+    };
+    postData(authToken, "/user-authentication/checkToken/")
+      .then((response) => {
+        if (response.status === 200) {
+          if(response.data !== 'true'){
+            window.location.href="/"
+          }
+        } else {
+        }
+      })
+      .catch((error) => {
+        console.error("Error booking slot:", error);
+      });
+
+  }, []);
   const offers = [
     {
       id: 1,

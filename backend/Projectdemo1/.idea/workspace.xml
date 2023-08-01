@@ -5,11 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bfd0f0e7-ab5b-46c6-b9b3-147f52833d02" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/ProjectTrial1/Projectdemo1/UserAuthentication/UserAuthentication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/ProjectTrial1/Projectdemo1/UserAuthentication/UserAuthenticationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/ProjectTrial1/Projectdemo1/UserAuthentication/UserAuthenticationJdbcRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/ProjectTrial1/Projectdemo1/UserAuthentication/UserAuthenticationRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/ProjectTrial1/Projectdemo1/UserAuthentication/UserAuthenticationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ProjectTrial1/Projectdemo1/barberinventory/BarberInventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ProjectTrial1/Projectdemo1/barberinventory/BarberInventory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ProjectTrial1/Projectdemo1/barberinventory/BarberInventoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ProjectTrial1/Projectdemo1/barberinventory/BarberInventoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ProjectTrial1/Projectdemo1/barberinventory/BarberInventoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ProjectTrial1/Projectdemo1/barberinventory/BarberInventoryRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ProjectTrial1/Projectdemo1/barberinventory/BarberInventoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ProjectTrial1/Projectdemo1/barberinventory/BarberInventoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ProjectTrial1/Projectdemo1/ConnectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ProjectTrial1/Projectdemo1/ConnectionManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,18 +62,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;ToolWindowRun.ShowToolbar&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/acer/IdeaProjects/Projectdemo1/src/main/java/com/ProjectTrial1/Projectdemo1&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "ToolWindowRun.ShowToolbar": "false",
+    "last_opened_file_path": "C:/Users/acer/IdeaProjects/Projectdemo1/src/main/java/com/ProjectTrial1/Projectdemo1",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\acer\IdeaProjects\Projectdemo1\src\main\java\com\ProjectTrial1\Projectdemo1" />
@@ -118,11 +121,11 @@
     <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Projectdemo1$BarberInventoryServiceTest.ic" NAME="BarberInventoryServiceTest Coverage Results" MODIFIED="1690513553144" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>com.ProjectTrial1.Projectdemo1.barberinventory.*</FILTER>
-    </SUITE>
     <SUITE FILE_PATH="coverage/Projectdemo1$UserServicesTest.ic" NAME="UserServicesTest Coverage Results" MODIFIED="1690513581953" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.ProjectTrial1.Projectdemo1.account.user.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Projectdemo1$BarberInventoryServiceTest.ic" NAME="BarberInventoryServiceTest Coverage Results" MODIFIED="1690513553144" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.ProjectTrial1.Projectdemo1.barberinventory.*</FILTER>
     </SUITE>
   </component>
 </project>
